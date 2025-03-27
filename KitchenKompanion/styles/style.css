@@ -2,9 +2,10 @@
   margin: auto;
   width: 640px;
   height: 960px;
-  background-color: aqua;
+  background-color: #fdfaf5;
   overflow: hidden;
   position: relative;
+  color: #6a491b;
 }
 
 /* <----- Based off of w3schools top navigation: https://www.w3schools.com/howto/howto_js_topnav.asp */
@@ -40,3 +41,23 @@
 }
 
 /* <-------- end w3schools top navigation -------------> */
+
+#section1 {
+  display: inline-block;
+  background-color: #faedcd;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 400px;
+  border-radius: 10px;
+}
+
+#section2 {
+  display: inline-block;
+  background-color: #faedcd;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 400px;
+  border-radius: 10px;
+}
