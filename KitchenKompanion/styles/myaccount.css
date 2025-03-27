@@ -2,9 +2,15 @@
   margin: auto;
   width: 640px;
   height: 960px;
-  background-color: aqua;
+  background-color: #fdfaf5;
   overflow: hidden;
   position: relative;
+  color: #6a491b;
+}
+
+#contents {
+  text-align: center;
+  margin-left: 15px;
 }
 
 /* <----- Based off of w3schools top navigation: https://www.w3schools.com/howto/howto_js_topnav.asp */
@@ -40,3 +46,57 @@
 }
 
 /* <-------- end w3schools top navigation -------------> */
+
+#profile-pic-placeholder {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  background-color: #faedcd;
+  border-radius: 100px;
+}
+
+.member {
+  display: inline-block;
+  background-color: #e9edc9;
+  padding: 10px;
+  margin: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#add-member-button {
+  display: inline-block;
+  background-color: #a9c37a;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Times New Roman", Times, serif;
+  color: #6a491b;
+}
+
+.allergy {
+  display: inline-block;
+  background-color: #faedcd;
+  padding: 10px;
+  margin: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#allergy-button {
+  display: inline-block;
+  background-color: #dabd7f;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Times New Roman", Times, serif;
+  color: #6a491b;
+}
