@@ -8,6 +8,27 @@
   </head>
   <body>
     <div id="screen">
+      <!-- Add member modal -->
+      <div id="add-member-modal" class="modal">
+        <!--  -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+          <input type="text" id="member-text" />
+          <input type="button" value="add to list" id="add-member" />
+        </div>
+      </div>
+
+      <!-- Add allergy modal -->
+      <div id="add-allergy-modal" class="modal">
+        <!--  -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+          <input type="text" id="allergy-text" />
+          <input type="button" value="add to list" id="add-allergy" />
+        </div>
+      </div>
       <div id="contents">
         <h1>My Account</h1>
 
@@ -17,15 +38,23 @@
         <h2>[ACCOUNT TYPE]</h2>
 
         <h2>Household Members</h2>
-        <div class="member">Wendy</div>
-        <div class="member">Terence</div>
-        <div class="member">Anthony</div>
+        <div id="member-list">
+          <div class="member">Wendy</div>
+          <div class="member">Terence</div>
+          <div class="member">Anthony</div>
+        </div>
+
+        <!-- add member modal opener button -->
         <button id="add-member-button">+ Add Member</button>
 
         <h2>Allergies</h2>
-        <div class="allergy">Peanuts</div>
-        <div class="allergy">Shellfish</div>
-        <button id="allergy-button">+ Add Allergy</button>
+        <div id="allergy-list">
+          <div class="allergy">Peanuts</div>
+          <div class="allergy">Shellfish</div>
+        </div>
+
+        <!-- add allergy modal opener button -->
+        <button id="add-allergy-button">+ Add Allergy</button>
       </div>
 
       <div class="navbar">
@@ -36,5 +65,6 @@
         <a href="./myaccount.html">User</a>
       </div>
     </div>
+    <script src="scripts/myaccountscript.js"></script>
   </body>
 </html>
