@@ -18,49 +18,8 @@
         </form>
       </div>
 
-      <article>
-        <div class="recipe-info">
-          <h2>Chicken Salad</h2>
-          <p>
-            A light and refreshing salad with grilled chicken, crisp lettuce,
-            and vinaigrette.
-          </p>
-          <p class="tags">Tags: Salad, Healthy, Quick Meal</p>
-        </div>
-      </article>
+      <div id="recipeList">
 
-      <article>
-        <div class="recipe-info">
-          <h2>Chicken Salad</h2>
-          <p>
-            A light and refreshing salad with grilled chicken, crisp lettuce,
-            and vinaigrette.
-          </p>
-          <p class="tags">Tags: Salad, Healthy, Quick Meal</p>
-        </div>
-      </article>
-
-      <article>
-        <div class="recipe-info">
-          <h2>Chicken Salad</h2>
-          <p>
-            A light and refreshing salad with grilled chicken, crisp lettuce,
-            and vinaigrette.
-          </p>
-          <p class="tags">Tags: Salad, Healthy, Quick Meal</p>
-        </div>
-      </article>
-
-      <article>
-        <div class="recipe-info">
-          <h2>Chicken Salad</h2>
-          <p>
-            A light and refreshing salad with grilled chicken, crisp lettuce,
-            and vinaigrette.
-          </p>
-          <p class="tags">Tags: Salad, Healthy, Quick Meal</p>
-        </div>
-      </article>
 
       <button class="add-recipe-button">+ Add Recipe</button>
 
@@ -71,6 +30,36 @@
         <a href="./profile.html">Profile</a>
         <a href="./myaccount.html">To-Do</a>
       </div>
+
+      <div id="recipeFormContainer">
+        <form id="recipeForm">
+          <h2>Add a New Recipe</h2>
+          <label for="recipeName">Recipe Name:</label>
+          <input type="text" id="recipeName" name="recipeName" required />
+          <br />
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="4" required></textarea>
+          <br />
+          <label for="tags">Tags (comma-separated):</label>
+          <input type="text" id="tags" name="tags" placeholder="e.g., Healthy, Quick Meal" />
+          <br />
+          <label for="ingredients">Ingredients:</label>
+          <div id="ingredientsContainer">
+            <div class="ingredient-row">
+              <input type="text" class="ingredient-name" placeholder="Ingredient" />
+              <input type="text" class="ingredient-size" placeholder="Serving Size" />
+              <button type="button" class="remove-ingredient">Remove</button>
+            </div>
+          </div>
+          <button type="button" id="addIngredient">+ Add Ingredient</button>
+          <br />
+          <button type="submit" id="submitBtn">Submit Recipe</button>
+          <button type="button" id="closeForm">Cancel</button>
+        </form>
+      </div>
+
+      <div id="formOverlay"></div>
     </div>
+    <script src="scripts/recipes.js"></script>
   </body>
 </html>
