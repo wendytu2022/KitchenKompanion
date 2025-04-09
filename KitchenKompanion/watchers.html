@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="styles/myaccount.css" />
+  </head>
+  <body>
+    <div id="screen">
+      <!-- Add watcher modal -->
+      <div id="add-watcher-modal" class="modal">
+        <!--  -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Enter new watcher's name and relationship to household.</p>
+          <p>Name:</p>
+          <input type="text" id="name-text" placeholder="Jane Doe" />
+          <p>Relationship to household:</p>
+          <input type="text" id="relationship-text" placeholder="Wendy's Mom" />
+          <br />
+          <br />
+          <input type="button" value="Add Watcher" id="add-watcher" />
+        </div>
+
+        <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
+      </div>
+
+      <h1>Household Members</h1>
+      <div id="member-tab-container">
+        <img src="images/watchertabbackground.png" id="member-tab" />
+        <a href="household.html" id="watchers-members-header">Members</a>
+        <a href="watchers.html" id="watchers-watchers-header">Watchers</a>
+      </div>
+      <div id="contents">
+        <!-- add watcher modal opener button -->
+        <button id="add-watcher-button">+ Add Watcher</button>
+        <p id="permissions"><i>Can only view Inventory and Grocery List.</i></p>
+        <div id="watcher-list">
+          <div class="watcher">
+            <div class="profile-pic"></div>
+            <div class="user-info">
+              <h3 class="member-name">Natalie</h3>
+              <p class="member-allergies">Anthony's Older Sister</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <a href="./">Text</a>
+        <a href="./lr.html">LR</a>
+        <a href="./recipes.html">Colors</a>
+        <a href="./profile.html">Profile</a>
+        <a href="./myaccount.html">User</a>
+      </div>
+    </div>
+    <script src="scripts/watcherscript.js"></script>
+  </body>
+</html>

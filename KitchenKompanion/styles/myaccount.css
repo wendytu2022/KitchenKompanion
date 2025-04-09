@@ -9,7 +9,7 @@
 }
 
 #contents {
-  text-align: center;
+  text-align: left;
   margin-left: 15px;
 }
 
@@ -63,55 +63,42 @@
 
 /* <-------- end w3schools top navigation -------------> */
 
-#profile-pic-placeholder {
-  margin: auto;
-  width: 200px;
-  height: 200px;
-  background-color: #faedcd;
-  border-radius: 100px;
+/* #member-tab {
+  background-color: #7c8830;
+  border-color: #7c8830;
+  border-width: 10px;
+  width: 60px;
+  height: 100px;
+  position: absolute;
+  z-index: 1;
+  background-image: url("../images/tabbackground.png");
+} */
+
+#user-basic-contents {
+  text-align: center;
+  margin-top: 40px;
 }
 
-.profile-pic {
-  width: 90px;
-  height: 90px;
-  background-color: #fefae0;
-  border-radius: 100px;
+#username {
+  font-size: 40px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.member {
+#user-account-type {
+  font-size: 25px;
+}
+
+#allergy-header {
+  font-size: 30px;
+}
+
+#allergy {
   display: inline-block;
-
-  background-color: #e9edc9;
-  padding: 10px;
-  margin: 10px;
-  width: 85%;
-  height: 120px;
   text-wrap: wrap;
   text-align: center;
-  border-radius: 10px;
-}
-
-#add-member-button {
-  display: inline-block;
-  background-color: #a9c37a;
-  border: none;
-  padding: 10px;
-  margin: 10px;
-  text-wrap: wrap;
-  text-align: center;
-  border-radius: 10px;
-  font-family: "Times New Roman", Times, serif;
-  color: #6a491b;
-}
-
-.allergy {
-  display: inline-block;
-  background-color: #faedcd;
-  padding: 10px;
-  margin: 10px;
-  text-wrap: wrap;
-  text-align: center;
-  border-radius: 10px;
+  margin-left: 7px;
+  font-size: 20px;
 }
 
 #add-allergy-button {
@@ -124,7 +111,161 @@
   text-align: center;
   border-radius: 10px;
   font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
   color: #6a491b;
+}
+
+#household-header {
+  font-size: 30px;
+}
+
+#add-remove-members-link {
+  text-decoration: none;
+  font-size: 25px;
+}
+
+#member-tab-container {
+  position: relative;
+  width: 640px;
+  height: 70px;
+}
+
+#member-tab {
+  position: absolute;
+  height: 70px;
+  width: 640px;
+  z-index: 1;
+}
+
+#household-members-header,
+#household-watchers-header,
+#watchers-members-header,
+#watchers-watchers-header {
+  font-size: 25px;
+  top: 20px;
+  text-decoration: none;
+}
+
+#household-members-header {
+  position: absolute;
+  color: #7c8830;
+  z-index: 2;
+  margin-left: 100px;
+  left: 20px;
+}
+
+#household-watchers-header {
+  position: absolute;
+  color: white;
+  z-index: 2;
+  margin-right: 100px;
+  right: 20px;
+}
+
+#watchers-members-header {
+  position: absolute;
+  color: white;
+  z-index: 2;
+  margin-left: 100px;
+  left: 20px;
+}
+
+#watchers-watchers-header {
+  position: absolute;
+  color: #7c8830;
+  z-index: 2;
+  margin-right: 100px;
+  right: 20px;
+}
+
+#profile-pic-placeholder {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  background-color: #faedcd;
+  border-radius: 100px;
+  z-index: -1;
+}
+
+.profile-pic {
+  display: inline-block;
+  float: left;
+  width: 85px;
+  height: 85px;
+  margin: 10px;
+  background-color: #fefae0;
+  border-radius: 100px;
+}
+
+.member,
+.watcher {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  width: 85%;
+  height: 120px;
+  text-wrap: wrap;
+  color: #e3eee1;
+  border-radius: 10px;
+}
+
+.member {
+  background-color: #7c8830;
+}
+
+.member-name {
+  font-size: 30px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.member-allergies {
+  font-size: 20px;
+  margin-bottom: 80px;
+}
+
+.watcher {
+  background-color: #cd6f13;
+}
+
+.user-info {
+  flex-direction: column;
+  float: left;
+  text-align: left;
+  margin-left: 10px;
+}
+
+#add-member-button,
+#add-watcher-button {
+  display: inline-block;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  margin-left: 10px;
+  float: left;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 50px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  z-index: 2;
+}
+
+#add-member-button {
+  background-color: #7c8830;
+  color: #fefae0;
+}
+
+#add-watcher-button {
+  background-color: #cd6f13;
+  color: #fefae0;
+}
+
+#permissions {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 /* The Modal (background) */
@@ -132,7 +273,7 @@
   display: none; /* Hidden by default */
   margin: auto;
   position: absolute; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 3; /* Sit on top */
   left: 0;
   top: 0;
   width: 640px; /* Full width */
@@ -146,11 +287,30 @@
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
+  border-radius: 10px;
   margin: auto;
   margin-top: 300px; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  font-size: 20px;
+}
+
+#allergy-text {
+  height: 40px;
+  width: 300px;
+  border: 5px solid #cd6f13;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+#add-allergy {
+  height: 50px;
+  width: 150px;
+  border-color: #cd6f13;
+  border-radius: 10px;
+  background-color: #cd6f13;
+  font-size: 20px;
 }
 
 /* The Close Button */
