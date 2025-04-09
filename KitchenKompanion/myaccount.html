@@ -10,34 +10,34 @@
     <div id="screen">
       <!-- Add allergy modal -->
       <div id="add-allergy-modal" class="modal">
-        <!--  -->
         <div class="modal-content">
           <span class="close">&times;</span>
+          <h2>New Allergy</h2>
           <p>Enter allergy:</p>
           <input type="text" id="allergy-text" placeholder="New allergy" />
-          <input type="button" value="add to list" id="add-allergy" />
+          <input type="button" value="Add Allergy" id="add-allergy" />
         </div>
 
         <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
       </div>
-      <div id="contents">
-        <h1>My Account</h1>
-
+      <div id="user-basic-contents">
         <div id="profile-pic-placeholder"></div>
         <h2 id="username">Jane Doe</h2>
 
         <p id="user-account-type">Household Member</p>
-
-        <h2>Allergies</h2>
+      </div>
+      <div id="contents">
+        <h2 id="allergy-header">My Allergies</h2>
         <div id="allergy-list">
-          <div class="allergy">Peanuts</div>
-          <div class="allergy">Shellfish</div>
+          <div id="allergy">Peanuts, shellfish</div>
         </div>
 
         <!-- add allergy modal opener button -->
         <button id="add-allergy-button">+ Add Allergy</button>
 
-        <h2>Household</h2>
+        <hr />
+
+        <h2 id="household-header">Household</h2>
         <a href="./household.html" id="add-remove-members-link"
           >Add/Remove Members</a
         >
