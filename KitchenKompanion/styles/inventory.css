@@ -7,14 +7,13 @@ body, html {
 }
 
 #screen {
-  max-width: 640px;
-  margin: 0 auto;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  background-color: white;
-  overflow: hidden; /* prevent side scrolling */
+  margin: auto;
+  width: 640px;
+  height: 960px;
+  background-color: #fdfaf5;
+  color: #6a491b;
+  overflow: hidden;
+  position: relative;
 }
 
 .inventory-app {
@@ -24,28 +23,53 @@ body, html {
 }
 
 .navbar {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
   display: flex;
-  background-color: #3B3B3B;
-  border-top: 1px solid #ccc;
+  justify-content: space-around;
+  align-items: center; 
+  padding: 0.5rem 0;
 }
 
+/* navbar links */
 .navbar a {
-  flex: 1;
+  color: #6a491b; /* Match the app's text color */
   text-align: center;
-  padding: 20px;
   text-decoration: none;
   font-size: 17px;
-  color: #f2f2f2;
+  padding: 2rem 1rem; 
+  flex: 1; 
+  text-align: center;
 }
 
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
+/* navbar active/current link */
 .navbar a.active {
-  background-color: #D4A373;
+  background-color: #8A640D;
   color: white;
+}
+
+/* Add this to your existing CSS for the navbar */
+
+.nav-icon {
+  height: 85px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+.nav-house-icon{
+  height: 65px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.nav-profile-icon{
+  height: 65px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
 }
 
 
@@ -53,7 +77,7 @@ body, html {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background: #FAEDCD;
+  background: #fdfaf5;
 }
 
 .inventory-app h2 {

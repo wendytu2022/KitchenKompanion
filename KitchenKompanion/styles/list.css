@@ -7,39 +7,55 @@
   position: relative;
 }
 
-/* <----- Based off of w3schools top navigation: https://www.w3schools.com/howto/howto_js_topnav.asp */
-
-/* general navbar */
 .navbar {
-  background-color: #333;
   overflow: hidden;
   position: absolute;
   bottom: 0;
+  width: 100%; 
+  display: flex;
+  justify-content: space-around;
+  align-items: center; 
+  padding: 0.5rem 0;
 }
 
 /* navbar links */
 .navbar a {
-  float: left;
-  color: #f2f2f2;
+  color: #6a491b; /* Match the app's text color */
   text-align: center;
-  padding: 45px 45.2px;
   text-decoration: none;
   font-size: 17px;
-}
-
-/* navbar links when hovering */
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
+  padding: 2rem 1rem; 
+  flex: 1; 
+  text-align: center;
 }
 
 /* navbar active/current link */
 .navbar a.active {
-  background-color: #d49400;
+  background-color: #8A640D;
   color: white;
 }
 
-/* <-------- end w3schools top navigation -------------> */
+/* Add this to your existing CSS for the navbar */
+
+.nav-icon {
+  height: 85px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+.nav-house-icon{
+  height: 65px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.nav-profile-icon{
+  height: 65px; /* Increased from 50px */
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
 
 h2 img {
   width: 30px; 
