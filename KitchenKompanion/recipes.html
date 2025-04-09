@@ -18,13 +18,13 @@
         </form>
       </div>
 
-      <div id="recipeList">
-
+    <div id="recipeList">
+      
 
       <button class="add-recipe-button">+ Add Recipe</button>
 
       <div class="navbar">
-        <a href="./">Text</a>
+        <a href="./">Recipes</a>
         <a href="./lr.html">LR</a>
         <a href="./recipes.html">Colors</a>
         <a href="./profile.html">Profile</a>
@@ -35,18 +35,21 @@
         <form id="recipeForm">
           <h2>Add a New Recipe</h2>
           <label for="recipeName">Recipe Name:</label>
-          <input type="text" id="recipeName" name="recipeName" required />
+          <input type="text" id="recipeName" name="recipeName" required maxlength="40" />
           <br />
-          <label for="description">Description:</label>
-          <textarea id="description" name="description" rows="4" required></textarea>
+          <label for="description">Summary:</label>
+          <textarea id="description" name="description" rows="4" required maxlength="70"></textarea>
+          <br />
+          <label for="fullDescription">Full Description:</label>
+          <textarea id="fullDescription" name="fullDescription" rows="6" ></textarea>
           <br />
           <label for="tags">Tags (comma-separated):</label>
-          <input type="text" id="tags" name="tags" placeholder="e.g., Healthy, Quick Meal" />
+          <input type="text" id="tags" name="tags" placeholder="e.g., Healthy, Quick Meal" maxlength="60" />
           <br />
           <label for="ingredients">Ingredients:</label>
           <div id="ingredientsContainer">
             <div class="ingredient-row">
-              <input type="text" class="ingredient-name" placeholder="Ingredient" />
+              <input type="text" class="ingredient-name" placeholder="Ingredient" maxlength="60" />
               <input type="text" class="ingredient-size" placeholder="Serving Size" />
               <button type="button" class="remove-ingredient">Remove</button>
             </div>
@@ -60,6 +63,14 @@
 
       <div id="formOverlay"></div>
     </div>
+    
+      <div id="recipeModal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div id="modalRecipeDetails"></div>
+        </div>
+      </div>
+    
     <script src="scripts/recipes.js"></script>
   </body>
 </html>
