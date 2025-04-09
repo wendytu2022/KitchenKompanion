@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="styles/myaccount.css" />
+  </head>
+  <body>
+    <div id="screen">
+      <!-- Add member modal -->
+      <div id="add-member-modal" class="modal">
+        <!--  -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>
+            Enter new member's email address. We'll send them an email to invite
+            them to join the app and your household!
+          </p>
+          <input
+            type="text"
+            id="member-text"
+            placeholder="awesomeroommate@gmail.com"
+          />
+          <input type="button" value="Send Invitation" id="add-member" />
+        </div>
+
+        <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
+      </div>
+
+      <div id="contents">
+        <h1>Household Members</h1>
+        <!-- add member modal opener button -->
+        <button id="add-member-button">+ Add Member</button>
+        <div id="member-list">
+          <div class="member">
+            <div class="profile-pic"></div>
+            <h3 class="member-name">Wendy</h3>
+            <p class="member-allergies">Allergies: Peanuts, shellfish</p>
+          </div>
+          <div class="member">
+            <div class="profile-pic"></div>
+            <h3 class="member-name">Terence</h3>
+            <p class="member-allergies">Allergies: Grapes</p>
+          </div>
+          <div class="member">
+            <div class="profile-pic"></div>
+            <h3 class="member-name">Anthony</h3>
+            <p class="member-allergies">Allergies: Shellfish</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <a href="./">Text</a>
+        <a href="./lr.html">LR</a>
+        <a href="./recipes.html">Colors</a>
+        <a href="./profile.html">Profile</a>
+        <a href="./myaccount.html">User</a>
+      </div>
+    </div>
+    <script src="scripts/myaccountscript.js"></script>
+  </body>
+</html>
