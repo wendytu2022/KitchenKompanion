@@ -36,6 +36,10 @@ document.getElementById("add-member").onclick = function () {
 
   //Now construct a quick list element
   var newMember = '<div class="member">' + text + "</div>";
+  var newMember =
+    '<div class="member"><div class="profile-pic"></div><h3 class="member-name">' +
+    text +
+    '</h3><p class="member-allergies">Allergies: Peanuts, shellfish</p></div>';
 
   addMemberModal.style.display = "none";
   //Now use appendChild and add it to the list!

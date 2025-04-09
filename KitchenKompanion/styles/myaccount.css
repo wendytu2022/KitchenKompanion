@@ -47,17 +47,73 @@
 
 /* <-------- end w3schools top navigation -------------> */
 
+/* #member-tab {
+  background-color: #7c8830;
+  border-color: #7c8830;
+  border-width: 10px;
+  width: 60px;
+  height: 100px;
+  position: absolute;
+  z-index: 1;
+  background-image: url("../images/tabbackground.png");
+} */
+
+#member-tab-container {
+  position: relative;
+  width: 640px;
+  height: 70px;
+}
+
+#member-tab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 640px;
+  z-index: 1;
+}
+
+#members-header {
+  position: absolute;
+  top: 15px;
+  color: #7c8830;
+  z-index: 2;
+  margin-left: 100px;
+  font-size: 20px;
+}
+
+#watchers-header {
+  position: absolute;
+  top: 13px;
+  color: white;
+  z-index: 2;
+  margin-right: 100px;
+  font-size: 20px;
+}
+
+#members-header {
+  left: 20px; /* adjust horizontal position */
+}
+
+#watchers-header {
+  right: 20px; /* adjust horizontal position */
+}
+
 #profile-pic-placeholder {
   margin: auto;
   width: 200px;
   height: 200px;
   background-color: #faedcd;
   border-radius: 100px;
+  z-index: -1;
 }
 
 .profile-pic {
-  width: 90px;
-  height: 90px;
+  display: inline-block;
+  float: left;
+  width: 85px;
+  height: 85px;
+  margin: 10px;
   background-color: #fefae0;
   border-radius: 100px;
 }
@@ -65,27 +121,42 @@
 .member {
   display: inline-block;
 
-  background-color: #e9edc9;
+  background-color: #7c8830;
   padding: 10px;
   margin: 10px;
   width: 85%;
   height: 120px;
   text-wrap: wrap;
-  text-align: center;
+  color: #e3eee1;
   border-radius: 10px;
+}
+
+.member-name {
+  display: inline-block;
+  float: left;
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+.member-allergies {
+  display: inline-block;
 }
 
 #add-member-button {
   display: inline-block;
-  background-color: #a9c37a;
+  background-color: #7c8830;
   border: none;
   padding: 10px;
   margin: 10px;
+  margin-left: 40px;
+  float: left;
   text-wrap: wrap;
   text-align: center;
   border-radius: 10px;
   font-family: "Times New Roman", Times, serif;
-  color: #6a491b;
+  color: #fefae0;
+  z-index: 2;
 }
 
 .allergy {
