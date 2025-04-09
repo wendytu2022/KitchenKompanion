@@ -1,0 +1,125 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+#screen {
+  max-width: 640px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  background-color: white;
+  overflow: hidden; /* prevent side scrolling */
+}
+
+.inventory-app {
+  flex: 1;
+  overflow-y: auto; /* this allows the content to scroll up and down */
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  background-color: #3B3B3B;
+  border-top: 1px solid #ccc;
+}
+
+.navbar a {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #f2f2f2;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #D4A373;
+  color: white;
+}
+
+
+.inventory-app {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #FAEDCD;
+}
+
+.inventory-app h2 {
+  font-size: 22px;
+  color: #5E3A0D;
+  margin-bottom: 20px;
+}
+
+.inventory-app .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: #E9EDC9;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.inventory-app input[type="text"],
+.inventory-app input[type="number"],
+.inventory-app input[type="date"] {
+  flex: 1 1 45%;
+  border: none;
+  outline: none;
+  background: white;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.inventory-app button {
+  flex: 1 1 100%;
+  border: none;
+  outline: none;
+  padding: 12px;
+  background: #A9C37A;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#inventory-list {
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #FFF7E8;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.inventory-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+  color: #5E3A0D;
+  font-size: 16px;
+}
+
+.inventory-item:last-child {
+  border-bottom: none;
+}
+
+.expiration {
+  color: #B33A3A;
+  font-weight: bold;
+  font-size: 14px;
+}

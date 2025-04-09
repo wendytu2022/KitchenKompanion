@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="styles/list.css" />
+  </head>
+  <body>
+   
+
+    <div class="container" id="screen">
+      <div class="todo-app">
+        <h2>Grocery List </h2>
+        <div class="row">
+          <input type = "text" id="input-box" placeholder="Enter an item">
+          <button onclick="addTask()">+ Add</button>
+          
+      </div>
+      <div class="search">
+          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for items..">
+      </div>
+      <ul id="list-container">
+        
+
+      </ul>
+      
+     </div>
+
+ <button onclick="transferCheckedItems()">Send to Inventory</button>
+
+
+      <nav class="navbar">
+      <a href="./">Text</a>
+        <a href="./list.html">LR</a>
+        <a href="./recipes.html">Colors</a>
+        <a href="./profile.html">Profile</a>
+        <a href="./myaccount.html">User</a>
+      </nav>
+    </div>
+    <script src="Scripts/list.js"></script>
+  </body>
+</html>
