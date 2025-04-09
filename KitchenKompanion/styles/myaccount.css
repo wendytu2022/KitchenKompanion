@@ -55,11 +55,21 @@
   border-radius: 100px;
 }
 
+.profile-pic {
+  width: 90px;
+  height: 90px;
+  background-color: #fefae0;
+  border-radius: 100px;
+}
+
 .member {
   display: inline-block;
+
   background-color: #e9edc9;
   padding: 10px;
   margin: 10px;
+  width: 85%;
+  height: 120px;
   text-wrap: wrap;
   text-align: center;
   border-radius: 10px;
