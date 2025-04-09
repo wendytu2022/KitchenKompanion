@@ -32,14 +32,15 @@ window.onclick = function (event) {
 //Defining a listener for our button, specifically, an onclick handler
 document.getElementById("add-member").onclick = function () {
   //First things first, we need our text:
-  var text = document.getElementById("member-text").value; //.value gets input values
+  var name = document.getElementById("name-text").value; //.value gets input values
+  var allergies = document.getElementById("allergies-text").value;
 
-  //Now construct a quick list element
-  var newMember = '<div class="member">' + text + "</div>";
   var newMember =
-    '<div class="member"><div class="profile-pic"></div><h3 class="member-name">' +
-    text +
-    '</h3><p class="member-allergies">Allergies: Peanuts, shellfish</p></div>';
+    '<div class="member"><div class="profile-pic"></div><div class="user-info"><h3 class="member-name">' +
+    name +
+    '</h3><p class="member-allergies">Allergies: ' +
+    allergies +
+    "</p></div></div>";
 
   addMemberModal.style.display = "none";
   //Now use appendChild and add it to the list!

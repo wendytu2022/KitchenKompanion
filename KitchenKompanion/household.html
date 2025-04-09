@@ -13,16 +13,18 @@
         <!--  -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p>
-            Enter new member's email address. We'll send them an email to invite
-            them to join the app and your household!
-          </p>
+          <p>Enter new member's name and allergies.</p>
+          <p>Name:</p>
+          <input type="text" id="name-text" placeholder="Jane Doe" />
+          <p>Allergies:</p>
           <input
             type="text"
-            id="member-text"
-            placeholder="awesomeroommate@gmail.com"
+            id="allergies-text"
+            placeholder="Peanuts, shellfish, gluten"
           />
-          <input type="button" value="Send Invitation" id="add-member" />
+          <br />
+          <br />
+          <input type="button" value="Add Member" id="add-member" />
         </div>
 
         <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
@@ -31,8 +33,8 @@
       <h1>Household Members</h1>
       <div id="member-tab-container">
         <img src="images/tabbackground.png" id="member-tab" />
-        <a href="household.html" id="members-header">Members</a>
-        <a href="watchers.html" id="watchers-header">Watchers</a>
+        <a href="household.html" id="household-members-header">Members</a>
+        <a href="watchers.html" id="household-watchers-header">Watchers</a>
       </div>
       <div id="contents">
         <!-- add member modal opener button -->
@@ -40,18 +42,24 @@
         <div id="member-list">
           <div class="member">
             <div class="profile-pic"></div>
-            <h3 class="member-name">Wendy</h3>
-            <p class="member-allergies">Allergies: Peanuts, shellfish</p>
+            <div class="user-info">
+              <h3 class="member-name">Wendy</h3>
+              <p class="member-allergies">Allergies: Peanuts, shellfish</p>
+            </div>
           </div>
           <div class="member">
             <div class="profile-pic"></div>
-            <h3 class="member-name">Terence</h3>
-            <p class="member-allergies">Allergies: Grapes</p>
+            <div class="user-info">
+              <h3 class="member-name">Terence</h3>
+              <p class="member-allergies">Allergies: Grapes</p>
+            </div>
           </div>
           <div class="member">
             <div class="profile-pic"></div>
-            <h3 class="member-name">Anthony</h3>
-            <p class="member-allergies">Allergies: Shellfish</p>
+            <div class="user-info">
+              <h3 class="member-name">Anthony</h3>
+              <p class="member-allergies">Allergies: Shellfish</p>
+            </div>
           </div>
         </div>
       </div>

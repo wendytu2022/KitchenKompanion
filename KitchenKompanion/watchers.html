@@ -8,21 +8,19 @@
   </head>
   <body>
     <div id="screen">
-      <!-- Add member modal -->
-      <div id="add-member-modal" class="modal">
+      <!-- Add watcher modal -->
+      <div id="add-watcher-modal" class="modal">
         <!--  -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p>
-            Enter new member's email address. We'll send them an email to invite
-            them to join the app and your household!
-          </p>
-          <input
-            type="text"
-            id="member-text"
-            placeholder="awesomeroommate@gmail.com"
-          />
-          <input type="button" value="Send Invitation" id="add-member" />
+          <p>Enter new watcher's name and relationship to household.</p>
+          <p>Name:</p>
+          <input type="text" id="name-text" placeholder="Jane Doe" />
+          <p>Relationship to household:</p>
+          <input type="text" id="relationship-text" placeholder="Wendy's Mom" />
+          <br />
+          <br />
+          <input type="button" value="Add Watcher" id="add-watcher" />
         </div>
 
         <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
@@ -31,27 +29,19 @@
       <h1>Household Members</h1>
       <div id="member-tab-container">
         <img src="images/watchertabbackground.png" id="member-tab" />
-        <a href="household.html" id="members-header">Members</a>
-        <a href="watchers.html" id="watchers-header">Watchers</a>
+        <a href="household.html" id="watchers-members-header">Members</a>
+        <a href="watchers.html" id="watchers-watchers-header">Watchers</a>
       </div>
       <div id="contents">
-        <!-- add member modal opener button -->
-        <button id="add-member-button">+ Add Member</button>
-        <div id="member-list">
-          <div class="member">
+        <!-- add watcher modal opener button -->
+        <button id="add-watcher-button">+ Add Watcher</button>
+        <div id="watcher-list">
+          <div class="watcher">
             <div class="profile-pic"></div>
-            <h3 class="member-name">Wendy</h3>
-            <p class="member-allergies">Allergies: Peanuts, shellfish</p>
-          </div>
-          <div class="member">
-            <div class="profile-pic"></div>
-            <h3 class="member-name">Terence</h3>
-            <p class="member-allergies">Allergies: Grapes</p>
-          </div>
-          <div class="member">
-            <div class="profile-pic"></div>
-            <h3 class="member-name">Anthony</h3>
-            <p class="member-allergies">Allergies: Shellfish</p>
+            <div class="user-info">
+              <h3 class="member-name">Natalie</h3>
+              <p class="member-allergies">Anthony's Older Sister</p>
+            </div>
           </div>
         </div>
       </div>
@@ -64,6 +54,6 @@
         <a href="./myaccount.html">User</a>
       </div>
     </div>
-    <script src="scripts/myaccountscript.js"></script>
+    <script src="scripts/watcherscript.js"></script>
   </body>
 </html>

@@ -8,26 +8,6 @@
   </head>
   <body>
     <div id="screen">
-      <!-- Add member modal -->
-      <div id="add-member-modal" class="modal">
-        <!--  -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>
-            Enter new member's email address. We'll send them an email to invite
-            them to join the app and your household!
-          </p>
-          <input
-            type="text"
-            id="member-text"
-            placeholder="awesomeroommate@gmail.com"
-          />
-          <input type="button" value="Send Invitation" id="add-member" />
-        </div>
-
-        <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
-      </div>
-
       <!-- Add allergy modal -->
       <div id="add-allergy-modal" class="modal">
         <!--  -->
@@ -44,20 +24,9 @@
         <h1>My Account</h1>
 
         <div id="profile-pic-placeholder"></div>
-        <h2>[USERNAME]</h2>
+        <h2 id="username">Jane Doe</h2>
 
-        <h2>[ACCOUNT TYPE]</h2>
-
-        <!-- <h2>Household Members</h2>
-        <div id="member-list">
-          <div class="member">Wendy</div>
-          <div class="member">Terence</div>
-          <div class="member">Anthony</div>
-        </div> -->
-
-        <!-- add member modal opener button -->
-        <!-- <button id="add-member-button">+ Add Member</button> -->
-        <a href="./household.html">Add/Remove Members</a>
+        <p id="user-account-type">Household Member</p>
 
         <h2>Allergies</h2>
         <div id="allergy-list">
@@ -67,6 +36,11 @@
 
         <!-- add allergy modal opener button -->
         <button id="add-allergy-button">+ Add Allergy</button>
+
+        <h2>Household</h2>
+        <a href="./household.html" id="add-remove-members-link"
+          >Add/Remove Members</a
+        >
       </div>
 
       <div class="navbar">

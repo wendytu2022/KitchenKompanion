@@ -58,6 +58,21 @@
   background-image: url("../images/tabbackground.png");
 } */
 
+#username {
+  font-size: 40px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#user-account-type {
+  font-size: 25px;
+}
+
+#add-remove-members-link {
+  text-decoration: none;
+  font-size: 25px;
+}
+
 #member-tab-container {
   position: relative;
   width: 640px;
@@ -66,37 +81,50 @@
 
 #member-tab {
   position: absolute;
-  top: 0;
-  left: 0;
   height: 70px;
   width: 640px;
   z-index: 1;
 }
 
-#members-header {
+#household-members-header,
+#household-watchers-header,
+#watchers-members-header,
+#watchers-watchers-header {
+  font-size: 25px;
+  top: 20px;
+  text-decoration: none;
+}
+
+#household-members-header {
   position: absolute;
-  top: 15px;
   color: #7c8830;
   z-index: 2;
   margin-left: 100px;
-  font-size: 20px;
+  left: 20px;
 }
 
-#watchers-header {
+#household-watchers-header {
   position: absolute;
-  top: 13px;
   color: white;
   z-index: 2;
   margin-right: 100px;
-  font-size: 20px;
+  right: 20px;
 }
 
-#members-header {
-  left: 20px; /* adjust horizontal position */
+#watchers-members-header {
+  position: absolute;
+  color: white;
+  z-index: 2;
+  margin-left: 100px;
+  left: 20px;
 }
 
-#watchers-header {
-  right: 20px; /* adjust horizontal position */
+#watchers-watchers-header {
+  position: absolute;
+  color: #7c8830;
+  z-index: 2;
+  margin-right: 100px;
+  right: 20px;
 }
 
 #profile-pic-placeholder {
@@ -118,10 +146,9 @@
   border-radius: 100px;
 }
 
-.member {
+.member,
+.watcher {
   display: inline-block;
-
-  background-color: #7c8830;
   padding: 10px;
   margin: 10px;
   width: 85%;
@@ -131,21 +158,35 @@
   border-radius: 10px;
 }
 
+.member {
+  background-color: #7c8830;
+}
+
 .member-name {
-  display: inline-block;
-  float: left;
   font-size: 30px;
-  margin-left: 20px;
-  margin-top: 40px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .member-allergies {
-  display: inline-block;
+  font-size: 20px;
+  margin-bottom: 80px;
 }
 
-#add-member-button {
+.watcher {
+  background-color: #cd6f13;
+}
+
+.user-info {
+  flex-direction: column;
+  float: left;
+  text-align: left;
+  margin-left: 10px;
+}
+
+#add-member-button,
+#add-watcher-button {
   display: inline-block;
-  background-color: #7c8830;
   border: none;
   padding: 10px;
   margin: 10px;
@@ -155,8 +196,18 @@
   text-align: center;
   border-radius: 10px;
   font-family: "Times New Roman", Times, serif;
-  color: #fefae0;
+
   z-index: 2;
+}
+
+#add-member-button {
+  background-color: #7c8830;
+  color: #fefae0;
+}
+
+#add-watcher-button {
+  background-color: #cd6f13;
+  color: #fefae0;
 }
 
 .allergy {
@@ -187,7 +238,7 @@
   display: none; /* Hidden by default */
   margin: auto;
   position: absolute; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 3; /* Sit on top */
   left: 0;
   top: 0;
   width: 640px; /* Full width */
