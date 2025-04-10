@@ -9,7 +9,237 @@ const searchInput = document.querySelector('.search-bar input[type="search"]');
 const ingredientsContainer = document.getElementById('ingredientsContainer');
 const addIngredientButton = document.getElementById('addIngredient');
 
-// Lets users add ingredients to recipe
+// Redid recipe complilation to use local storage 
+function saveRecipesToStorage() {
+  const recipes = [];
+  document.querySelectorAll('#recipeList article').forEach(article => {
+    const recipeInfo = article.querySelector('.recipe-info');
+    const name = recipeInfo.querySelector('h2').textContent;
+    const description = recipeInfo.querySelector('p').textContent;
+    //desc
+    const fullDescription = article.dataset.fullDescription || '';
+    // tags
+    const tagsElement = recipeInfo.querySelector('.tags');
+    const tags = tagsElement ? tagsElement.textContent.replace('Tags: ', '') : '';
+    
+    //  ingredients
+    const ingredients = [];
+    const ingredientItems = recipeInfo.querySelectorAll('.ingredients-list li');
+    ingredientItems.forEach(item => {
+      const parts = item.textContent.split(' - ');
+      if (parts.length === 2) {
+        ingredients.push({ name: parts[0], size: parts[1] });
+      }
+    });
+    
+    recipes.push({ name, description, fullDescription, tags, ingredients });
+  });
+  
+  localStorage.setItem('recipes', JSON.stringify(recipes));
+}
+
+// load recipes from localStorage
+function loadRecipesFromStorage() {
+  try {
+    const savedRecipes = JSON.parse(localStorage.getItem('recipes'));
+    if (savedRecipes && Array.isArray(savedRecipes)) {
+      savedRecipes.forEach(recipe => {
+        createRecipeElement(
+          recipe.name,
+          recipe.description,
+          recipe.fullDescription,
+          recipe.tags,
+          recipe.ingredients
+        );
+      });
+    }
+  } catch (e) {
+    console.error('Error loading saved recipes:', e);
+  }
+}
+
+// Modify the createRecipeElement function to add a Remove button
+
+function createRecipeElement(name, description, fullDescription, tags, ingredients) {
+  const newArticle = document.createElement('article');
+  newArticle.dataset.fullDescription = fullDescription || '';
+  
+  const recipeDiv = document.createElement('div');
+  recipeDiv.className = 'recipe-info';
+
+  const recipeHeading = document.createElement('h2');
+  recipeHeading.textContent = name;
+  recipeDiv.appendChild(recipeHeading);
+
+  const recipeDesc = document.createElement('p');
+  recipeDesc.textContent = description;
+  recipeDiv.appendChild(recipeDesc);
+
+  if (ingredients.length > 0) {
+    const ingredientsTitle = document.createElement('h3');
+    ingredientsTitle.textContent = 'Ingredients';
+    recipeDiv.appendChild(ingredientsTitle);
+
+    const ingredientsList = document.createElement('ul');
+    ingredientsList.className = 'ingredients-list';
+    ingredients.forEach(ingredient => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${ingredient.name} - ${ingredient.size}`;
+      ingredientsList.appendChild(listItem);
+    });
+    recipeDiv.appendChild(ingredientsList);
+  }
+
+  let recipeTags = null;
+  if (tags) {
+    recipeTags = document.createElement('p');
+    recipeTags.className = 'tags';
+    recipeTags.textContent = `Tags: ${tags}`;
+    recipeDiv.appendChild(recipeTags);
+  }
+
+  // See More button
+  const seeMoreButton = document.createElement('button');
+  seeMoreButton.textContent = 'See More';
+  seeMoreButton.className = 'see-more-button';
+  seeMoreButton.addEventListener('click', function () {
+    showRecipeModal(name, description, fullDescription, tags, ingredients);
+  });
+  recipeDiv.appendChild(seeMoreButton);
+  
+  // Edit button
+  const editButton = createEditButton(newArticle, recipeHeading, recipeDesc, recipeTags, ingredients, fullDescription);
+  recipeDiv.appendChild(editButton);
+  
+  // Remove button
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Remove';
+  removeButton.className = 'remove-recipe-button';
+  removeButton.addEventListener('click', function() {
+    newArticle.remove();
+    saveRecipesToStorage();
+  });
+  recipeDiv.appendChild(removeButton);
+
+  newArticle.appendChild(recipeDiv);
+  recipeList.appendChild(newArticle);
+  
+  // Save to localStorage whenever a recipe is added
+  saveRecipesToStorage();
+  
+  return newArticle;
+}
+
+// Helper function to show recipe modal (used by both See More buttons)
+function showRecipeModal(name, description, fullDescription, tags, ingredients) {
+  const modal = document.getElementById('recipeModal');
+  const modalContentDiv = document.getElementById('modalRecipeDetails');
+  
+  modalContentDiv.innerHTML = '';
+  
+  const titleElement = document.createElement('h2');
+  titleElement.textContent = name;
+  modalContentDiv.appendChild(titleElement);
+  
+  const descElement = document.createElement('p');
+  descElement.textContent = description;
+  modalContentDiv.appendChild(descElement);
+  
+  if (fullDescription && fullDescription.trim()) {
+    const fullDescHeading = document.createElement('h3');
+    fullDescHeading.textContent = 'Full Description';
+    modalContentDiv.appendChild(fullDescHeading);
+    
+    const fullDescElement = document.createElement('div');
+    fullDescElement.className = 'full-description';
+    fullDescElement.textContent = fullDescription;
+    modalContentDiv.appendChild(fullDescElement);
+  }
+  
+  if (ingredients.length > 0) {
+    const ingredientsHeading = document.createElement('h3');
+    ingredientsHeading.textContent = 'Ingredients';
+    modalContentDiv.appendChild(ingredientsHeading);
+
+    const ingredientsList = document.createElement('ul');
+    ingredients.forEach(ingredient => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${ingredient.name} - ${ingredient.size}`;
+      ingredientsList.appendChild(listItem);
+    });
+    modalContentDiv.appendChild(ingredientsList);
+  }
+  
+  if (tags) {
+    const tagsElement = document.createElement('p');
+    tagsElement.textContent = `Tags: ${tags}`;
+    modalContentDiv.appendChild(tagsElement);
+  }
+  
+  const addToListBtn = document.createElement('button');
+  addToListBtn.textContent = 'Add Missing Ingredients to List';
+  addToListBtn.className = 'add-to-list-btn';
+  addToListBtn.addEventListener('click', function() {
+    addMissingIngredientsToList(ingredients);
+  });
+  modalContentDiv.appendChild(addToListBtn);
+  
+  modal.style.display = 'block';
+}
+
+// Helper function to add missing ingredients to list
+function addMissingIngredientsToList(ingredients) {
+  // Get current grocery list items from localStorage
+  const currentListHTML = localStorage.getItem("data") || "";
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = currentListHTML;
+  const currentItems = Array.from(tempDiv.querySelectorAll("li"))
+    .map(li => li.textContent.replace("×", "").trim().toLowerCase());
+  
+  // Get current inventory items from localStorage
+  let inventoryItems = [];
+  try {
+    inventoryItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
+  } catch (e) {
+    inventoryItems = [];
+  }
+  
+  const inventoryItemNames = inventoryItems.map(item => item.name.toLowerCase());
+  
+  // get missing ingredients
+  const missingIngredients = ingredients.filter(ingredient => 
+    !inventoryItemNames.includes(ingredient.name.toLowerCase()));
+  
+  if (missingIngredients.length === 0) {
+    alert("You have all ingredients needed for this recipe!");
+    return;
+  }
+  
+  // Add missing ingredients to grocery list if not already there
+  let addedCount = 0;
+  missingIngredients.forEach(ingredient => {
+    const ingredientName = ingredient.name.toLowerCase();
+    if (!currentItems.includes(ingredientName)) {
+      const li = document.createElement("li");
+      li.textContent = ingredient.name;
+      const span = document.createElement("span");
+      span.innerHTML = "\u00d7";
+      li.appendChild(span);
+      tempDiv.appendChild(li);
+      addedCount++;
+    }
+  });
+  
+  // Save updated grocery list back to localStorage
+  localStorage.setItem("data", tempDiv.innerHTML);
+  
+  if (addedCount > 0) {
+    alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
+  } else {
+    alert("These ingredients are already on your grocery list!");
+  }
+}
+
 addIngredientButton.addEventListener('click', function () {
   const ingredientRow = document.createElement('div');
   ingredientRow.className = 'ingredient-row';
@@ -18,7 +248,6 @@ addIngredientButton.addEventListener('click', function () {
     <input type="text" class="ingredient-size" placeholder="Serving Size" />
     <button type="button" class="remove-ingredient">Remove</button>
   `;
-  // Lets users remove ingredients 
   ingredientRow.querySelector('.remove-ingredient').addEventListener('click', function () {
     ingredientRow.remove();
   });
@@ -73,8 +302,8 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
     showForm();
 
 
-    recipeForm.onsubmit = function (e) {
-      e.preventDefault(); // Prevent default form submission which reloads page
+    recipeForm.onsubmit = function (e) { 
+      e.preventDefault();
 
       // Get new values
       const updatedName = document.getElementById('recipeName').value;
@@ -85,6 +314,7 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
       recipeHeading.textContent = updatedName;
       recipeDesc.textContent = updatedDescription;
       
+      article.dataset.fullDescription = updatedFullDescription;
       fullDescription = updatedFullDescription;
       
       if (recipeTags) {
@@ -97,6 +327,7 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
         recipeTags = newTags;
       }
 
+      // Update ingredients
       const updatedIngredients = [];
       document.querySelectorAll('.ingredient-row').forEach(row => {
         const ingredientName = row.querySelector('.ingredient-name').value;
@@ -167,6 +398,62 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
             modalContentDiv.appendChild(tagsElement);
           }
           
+          const addToListBtn = document.createElement('button');
+          addToListBtn.textContent = 'Add Missing Ingredients to List';
+          addToListBtn.className = 'add-to-list-btn';
+          addToListBtn.addEventListener('click', function() {
+            // Get current grocery list items from localStorage
+            const currentListHTML = localStorage.getItem("data") || "";
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = currentListHTML;
+            const currentItems = Array.from(tempDiv.querySelectorAll("li"))
+              .map(li => li.textContent.replace("×", "").trim().toLowerCase());
+            
+            // Get current inventory items from localStorage
+            let inventoryItems = [];
+            try {
+              inventoryItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
+            } catch (e) {
+              inventoryItems = [];
+            }
+            
+            const inventoryItemNames = inventoryItems.map(item => item.name.toLowerCase());
+            
+            // Find missing ingredients
+            const missingIngredients = recipeIngredients.filter(ingredient => 
+              !inventoryItemNames.includes(ingredient.name.toLowerCase()));
+            
+            if (missingIngredients.length === 0) {
+              alert("You have all ingredients needed for this recipe!");
+              return;
+            }
+            
+            // Add missing ingredients to grocery list if they're not already there
+            let addedCount = 0;
+            missingIngredients.forEach(ingredient => {
+              const ingredientName = ingredient.name.toLowerCase();
+              if (!currentItems.includes(ingredientName)) {
+                const li = document.createElement("li");
+                li.textContent = ingredient.name;
+                const span = document.createElement("span");
+                span.innerHTML = "\u00d7";
+                li.appendChild(span);
+                tempDiv.appendChild(li);
+                addedCount++;
+              }
+            });
+            
+            // Save updated grocery list back to localStorage
+            localStorage.setItem("data", tempDiv.innerHTML);
+            
+            if (addedCount > 0) {
+              alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
+            } else {
+              alert("These ingredients are already on your grocery list!");
+            }
+          });
+          modalContentDiv.appendChild(addToListBtn);
+          
           modal.style.display = 'block';
         });
       }
@@ -198,98 +485,7 @@ function defaultFormSubmit(e) {
     }
   });
 
-  const newArticle = document.createElement('article');
-  const recipeDiv = document.createElement('div');
-  recipeDiv.className = 'recipe-info';
-
-  const recipeHeading = document.createElement('h2');
-  recipeHeading.textContent = name;
-  recipeDiv.appendChild(recipeHeading);
-
-  const recipeDesc = document.createElement('p');
-  recipeDesc.textContent = description;
-  recipeDiv.appendChild(recipeDesc);
-
-  if (ingredients.length > 0) {
-    const ingredientsTitle = document.createElement('h3');
-    ingredientsTitle.textContent = 'Ingredients';
-    recipeDiv.appendChild(ingredientsTitle);
-
-    const ingredientsList = document.createElement('ul');
-    ingredientsList.className = 'ingredients-list';
-    ingredients.forEach(ingredient => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `${ingredient.name} - ${ingredient.size}`;
-      ingredientsList.appendChild(listItem);
-    });
-    recipeDiv.appendChild(ingredientsList);
-  }
-
-  let recipeTags = null;
-  if (tags) {
-    recipeTags = document.createElement('p');
-    recipeTags.className = 'tags';
-    recipeTags.textContent = `Tags: ${tags}`;
-    recipeDiv.appendChild(recipeTags);
-  }
-
-  const seeMoreButton = document.createElement('button');
-  seeMoreButton.textContent = 'See More';
-  seeMoreButton.className = 'see-more-button';
-  seeMoreButton.addEventListener('click', function () {
-    const modal = document.getElementById('recipeModal');
-    const modalContentDiv = document.getElementById('modalRecipeDetails');
-    
-    modalContentDiv.innerHTML = '';
-    
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = name;
-    modalContentDiv.appendChild(titleElement);
-    
-    const descElement = document.createElement('p');
-    descElement.textContent = description;
-    modalContentDiv.appendChild(descElement);
-    
-    if (fullDescription && fullDescription.trim()) {
-      const fullDescHeading = document.createElement('h3');
-      fullDescHeading.textContent = 'Full Description';
-      modalContentDiv.appendChild(fullDescHeading);
-      
-      const fullDescElement = document.createElement('div');
-      fullDescElement.className = 'full-description';
-      fullDescElement.textContent = fullDescription;
-      modalContentDiv.appendChild(fullDescElement);
-    }
-    
-    if (ingredients.length > 0) {
-      const ingredientsHeading = document.createElement('h3');
-      ingredientsHeading.textContent = 'Ingredients';
-      modalContentDiv.appendChild(ingredientsHeading);
-  
-      const ingredientsList = document.createElement('ul');
-      ingredients.forEach(ingredient => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${ingredient.name} - ${ingredient.size}`;
-        ingredientsList.appendChild(listItem);
-      });
-      modalContentDiv.appendChild(ingredientsList);
-    }
-    
-    if (tags) {
-      const tagsElement = document.createElement('p');
-      tagsElement.textContent = `Tags: ${tags}`;
-      modalContentDiv.appendChild(tagsElement);
-    }
-    
-    modal.style.display = 'block';
-  });
-  recipeDiv.appendChild(seeMoreButton);
-  
-  const editButton = createEditButton(newArticle, recipeHeading, recipeDesc, recipeTags, ingredients, fullDescription);
-  recipeDiv.appendChild(editButton);
-
-  newArticle.appendChild(recipeDiv);
-  recipeList.appendChild(newArticle);
+  createRecipeElement(name, description, fullDescription, tags, ingredients);
 
   recipeForm.reset();
   ingredientsContainer.innerHTML = ''; 
@@ -329,3 +525,5 @@ window.addEventListener('click', function(event) {
     modal.style.display = 'none';
   }
 });
+
+window.addEventListener('load', loadRecipesFromStorage);

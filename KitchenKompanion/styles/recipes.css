@@ -57,20 +57,39 @@ header {
 }
 
 .edit-recipe-button {
-  padding: 0.5rem 0.75rem;
-  background-color: #e9edc9;
-  color: #3d2f1f;
-  font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;  
+    background-color: #E9EDC9; 
+    color: #3D2F1F;          
+    font-size: 0.8rem;       
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    position: absolute;
+    top: 0.2rem;
+    right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.edit-recipe-button:hover {
+  background-color: #dcd7c2;
+}
+
+.remove-recipe-button {
+  padding: 0.5rem 0.75rem;  
+  background-color: #f8d7da; 
+  color: #E34C35; 
+  font-size: 0.8rem;       
   border: none;
   border-radius: 14px;
   cursor: pointer;
   position: absolute;
   top: 0.2rem;
-  right: 1rem;
+  right: 5.5rem; 
+  transition: background-color 0.3s ease;
 }
 
-.edit-recipe-button:hover {
-  background-color: #dcd7c2;
+.remove-recipe-button:hover {
+  background-color: #f5c6cb;
 }
 
 #recipeFormContainer {
@@ -214,17 +233,18 @@ header {
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 1rem 1.25rem;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 8px;
-  position: relative;
-  font-family: "Inter", sans-serif;
-  max-height: 80vh;
-  overflow-y: auto;
+background-color: #fefefe;
+margin: 10% auto;
+padding: 1rem 1.25rem;
+border: 1px solid #888;
+width: 80%;
+max-width: 600px;
+border-radius: 8px;
+position: relative;
+font-family: 'Inter', sans-serif;
+max-height: 80vh;
+overflow-y: auto;
+padding-bottom: 4rem;
 }
 
 .close-modal {
@@ -288,6 +308,23 @@ header {
 .modal-content {
   padding: 1rem 1.25rem;
 }
+.add-to-list-btn {
+  position: relative;
+  float: right;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #8A640D;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-list-btn:hover {
+  background-color: #6a4b0a;
+}
 
 /* <----- Based off of w3schools top navigation: https://www.w3schools.com/howto/howto_js_topnav.asp */
 
@@ -306,7 +343,7 @@ header {
 
 /* navbar links */
 .navbar a {
-  color: #6a491b; /* Match the app's text color */
+  color: #6a491b; 
   text-align: center;
   text-decoration: none;
   font-size: 17px;
@@ -315,34 +352,33 @@ header {
   text-align: center;
 }
 
-/* navbar active/current link */
 .navbar a.active {
   background-color: #8a640d;
   color: white;
 }
 
-/* Add this to your existing CSS for the navbar */
 
 .nav-icon {
-  height: 85px; /* Increased from 50px */
-  width: auto;
-  margin: 0 auto;
-  display: block;
-}
-.nav-house-icon {
-  height: 65px; /* Increased from 50px */
+  height: 85px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
-.nav-profile-icon {
-  height: 65px; /* Increased from 50px */
+.nav-house-icon{
+  height: 65px; 
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
-/* Add a special hover style just for the first nav item with the icon */
+
+.nav-profile-icon{
+  height: 65px;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+
 
 /* <-------- end w3schools top navigation -------------> */

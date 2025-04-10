@@ -31,7 +31,7 @@
 
 /* navbar links */
 .navbar a {
-  color: #6a491b; /* Match the app's text color */
+  color: #6a491b; 
   text-align: center;
   text-decoration: none;
   font-size: 17px;
@@ -40,14 +40,13 @@
   text-align: center;
 }
 
-/* navbar active/current link */
 .navbar a.active {
   background-color: #8a640d;
   color: #fdfaf5;
 }
 
 .nav-icon {
-  height: 85px; /* Increased from 50px */
+  height: 85px; 
   width: auto;
   margin: 0 auto;
   display: block;
