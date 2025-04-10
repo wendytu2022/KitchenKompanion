@@ -167,6 +167,62 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
             modalContentDiv.appendChild(tagsElement);
           }
           
+          const addToListBtn = document.createElement('button');
+          addToListBtn.textContent = 'Add Missing Ingredients to List';
+          addToListBtn.className = 'add-to-list-btn';
+          addToListBtn.addEventListener('click', function() {
+            // Get current grocery list items from localStorage
+            const currentListHTML = localStorage.getItem("data") || "";
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = currentListHTML;
+            const currentItems = Array.from(tempDiv.querySelectorAll("li"))
+              .map(li => li.textContent.replace("×", "").trim().toLowerCase());
+            
+            // Get current inventory items from localStorage
+            let inventoryItems = [];
+            try {
+              inventoryItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
+            } catch (e) {
+              inventoryItems = [];
+            }
+            
+            const inventoryItemNames = inventoryItems.map(item => item.name.toLowerCase());
+            
+            // Find missing ingredients
+            const missingIngredients = recipeIngredients.filter(ingredient => 
+              !inventoryItemNames.includes(ingredient.name.toLowerCase()));
+            
+            if (missingIngredients.length === 0) {
+              alert("You have all ingredients needed for this recipe!");
+              return;
+            }
+            
+            // Add missing ingredients to grocery list if they're not already there
+            let addedCount = 0;
+            missingIngredients.forEach(ingredient => {
+              const ingredientName = ingredient.name.toLowerCase();
+              if (!currentItems.includes(ingredientName)) {
+                const li = document.createElement("li");
+                li.textContent = ingredient.name;
+                const span = document.createElement("span");
+                span.innerHTML = "\u00d7";
+                li.appendChild(span);
+                tempDiv.appendChild(li);
+                addedCount++;
+              }
+            });
+            
+            // Save updated grocery list back to localStorage
+            localStorage.setItem("data", tempDiv.innerHTML);
+            
+            if (addedCount > 0) {
+              alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
+            } else {
+              alert("These ingredients are already on your grocery list!");
+            }
+          });
+          modalContentDiv.appendChild(addToListBtn);
+          
           modal.style.display = 'block';
         });
       }
@@ -280,6 +336,62 @@ function defaultFormSubmit(e) {
       tagsElement.textContent = `Tags: ${tags}`;
       modalContentDiv.appendChild(tagsElement);
     }
+    
+    const addToListBtn = document.createElement('button');
+    addToListBtn.textContent = 'Add Missing Ingredients to List';
+    addToListBtn.className = 'add-to-list-btn';
+    addToListBtn.addEventListener('click', function() {
+      // Get current grocery list items from localStorage
+      const currentListHTML = localStorage.getItem("data") || "";
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = currentListHTML;
+      const currentItems = Array.from(tempDiv.querySelectorAll("li"))
+        .map(li => li.textContent.replace("×", "").trim().toLowerCase());
+      
+      // Get current inventory items from localStorage (if any)
+      let inventoryItems = [];
+      try {
+        inventoryItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
+      } catch (e) {
+        inventoryItems = [];
+      }
+      
+      const inventoryItemNames = inventoryItems.map(item => item.name.toLowerCase());
+      
+      // Find missing ingredients (those not in inventory)
+      const missingIngredients = ingredients.filter(ingredient => 
+        !inventoryItemNames.includes(ingredient.name.toLowerCase()));
+      
+      if (missingIngredients.length === 0) {
+        alert("You have all ingredients needed for this recipe!");
+        return;
+      }
+      
+      // Add missing ingredients to grocery list if they're not already there
+      let addedCount = 0;
+      missingIngredients.forEach(ingredient => {
+        const ingredientName = ingredient.name.toLowerCase();
+        if (!currentItems.includes(ingredientName)) {
+          const li = document.createElement("li");
+          li.textContent = ingredient.name;
+          const span = document.createElement("span");
+          span.innerHTML = "\u00d7";
+          li.appendChild(span);
+          tempDiv.appendChild(li);
+          addedCount++;
+        }
+      });
+      
+      // Save updated grocery list back to localStorage
+      localStorage.setItem("data", tempDiv.innerHTML);
+      
+      if (addedCount > 0) {
+        alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
+      } else {
+        alert("These ingredients are already on your grocery list!");
+      }
+    });
+    modalContentDiv.appendChild(addToListBtn);
     
     modal.style.display = 'block';
   });

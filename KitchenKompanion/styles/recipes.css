@@ -226,6 +226,7 @@ position: relative;
 font-family: 'Inter', sans-serif;
 max-height: 80vh;
 overflow-y: auto;
+padding-bottom: 4rem;
 }
 
 .close-modal {
@@ -291,6 +292,23 @@ margin-bottom: 0.75rem;
 padding: 1rem 1.25rem;
 }
 
+.add-to-list-btn {
+  position: relative;
+  float: right;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #8A640D;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-list-btn:hover {
+  background-color: #6a4b0a;
+}
 
 /* <----- Based off of w3schools top navigation: https://www.w3schools.com/howto/howto_js_topnav.asp */
 
@@ -308,7 +326,7 @@ padding: 1rem 1.25rem;
 
 /* navbar links */
 .navbar a {
-  color: #6a491b; /* Match the app's text color */
+  color: #6a491b; 
   text-align: center;
   text-decoration: none;
   font-size: 17px;
@@ -317,29 +335,27 @@ padding: 1rem 1.25rem;
   text-align: center;
 }
 
-/* navbar active/current link */
 .navbar a.active {
   background-color: #8A640D;
   color: white;
 }
 
-/* Add this to your existing CSS for the navbar */
 
 .nav-icon {
-  height: 85px; /* Increased from 50px */
+  height: 85px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
 .nav-house-icon{
-  height: 65px; /* Increased from 50px */
+  height: 65px; 
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
 .nav-profile-icon{
-  height: 65px; /* Increased from 50px */
+  height: 65px;
   width: auto;
   margin: 0 auto;
   display: block;
