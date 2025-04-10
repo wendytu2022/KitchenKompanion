@@ -8,65 +8,39 @@
   </head>
   <body>
     <div id="screen">
-      <!-- Add member modal -->
-      <div id="add-member-modal" class="modal">
-        <!--  -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>
-            Enter new member's email address. We'll send them an email to invite
-            them to join the app and your household!
-          </p>
-          <input
-            type="text"
-            id="member-text"
-            placeholder="awesomeroommate@gmail.com"
-          />
-          <input type="button" value="Send Invitation" id="add-member" />
-        </div>
-
-        <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
-      </div>
-
       <!-- Add allergy modal -->
       <div id="add-allergy-modal" class="modal">
-        <!--  -->
         <div class="modal-content">
           <span class="close">&times;</span>
+          <h2>New Allergy</h2>
           <p>Enter allergy:</p>
           <input type="text" id="allergy-text" placeholder="New allergy" />
-          <input type="button" value="add to list" id="add-allergy" />
+          <input type="button" value="Add Allergy" id="add-allergy" />
         </div>
 
         <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
       </div>
-      <div id="contents">
-        <h1>My Account</h1>
-
+      <div id="user-basic-contents">
         <div id="profile-pic-placeholder"></div>
-        <h2>[USERNAME]</h2>
+        <h2 id="username">Jane Doe</h2>
 
-        <h2>[ACCOUNT TYPE]</h2>
-
-        <!-- <h2>Household Members</h2>
-        <div id="member-list">
-          <div class="member">Wendy</div>
-          <div class="member">Terence</div>
-          <div class="member">Anthony</div>
-        </div> -->
-
-        <!-- add member modal opener button -->
-        <!-- <button id="add-member-button">+ Add Member</button> -->
-        <a href="./household.html">Add/Remove Members</a>
-
-        <h2>Allergies</h2>
+        <p id="user-account-type">Household Member</p>
+      </div>
+      <div id="contents">
+        <h2 id="allergy-header">My Allergies</h2>
         <div id="allergy-list">
-          <div class="allergy">Peanuts</div>
-          <div class="allergy">Shellfish</div>
+          <div id="allergy">Peanuts, shellfish</div>
         </div>
 
         <!-- add allergy modal opener button -->
         <button id="add-allergy-button">+ Add Allergy</button>
+
+        <hr />
+
+        <h2 id="household-header">Household</h2>
+        <a href="./household.html" id="add-remove-members-link"
+          >Add/Remove Members</a
+        >
       </div>
 
       <div class="navbar">

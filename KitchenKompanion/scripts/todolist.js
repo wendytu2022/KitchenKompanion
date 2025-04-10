@@ -90,10 +90,15 @@ function loadInventory() {
   saved.forEach((item) => {
     const li = document.createElement("li");
     li.className = "inventory-item";
-    li.innerHTML = `${item.text} <span class="expiration">${item.expiration}</span>`;
+    li.innerHTML = `
+      ${item.text}
+      <span class="expiration">${item.expiration}</span>
+      <span class="remove-btn" style="cursor: pointer; color: red;">&times;</span>
+    `;
     inventoryList.appendChild(li);
   });
 }
+
 
 
 function clearInputs() {
@@ -108,8 +113,10 @@ addButton.onclick = addItem;
 inventoryList.addEventListener("click", function (e) {
   if (e.target.classList.contains("remove-btn")) {
     e.target.parentElement.remove();
+    saveInventory(); // update localStorage after deleting
   }
 });
+
 
 loadInventory();
 
