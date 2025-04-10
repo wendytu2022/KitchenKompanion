@@ -67,10 +67,29 @@ header {
     position: absolute;
     top: 0.2rem;
     right: 1rem;
+    transition: background-color 0.3s ease;
 }
 
 .edit-recipe-button:hover {
     background-color: #dcd7c2;
+}
+
+.remove-recipe-button {
+  padding: 0.5rem 0.75rem;  
+  background-color: #f8d7da; 
+  color: #E34C35; 
+  font-size: 0.8rem;       
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  position: absolute;
+  top: 0.2rem;
+  right: 5.5rem; 
+  transition: background-color 0.3s ease;
+}
+
+.remove-recipe-button:hover {
+  background-color: #f5c6cb;
 }
 
 #recipeFormContainer {
@@ -361,7 +380,6 @@ padding: 1rem 1.25rem;
   display: block;
 }
 
-/* Add a special hover style just for the first nav item with the icon */
 
 
 /* <-------- end w3schools top navigation -------------> */
