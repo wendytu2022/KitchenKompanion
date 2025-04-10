@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -26,11 +27,12 @@ body, html {
   overflow: hidden;
   position: absolute;
   bottom: 0;
-  width: 100%; 
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center; 
+  align-items: center;
   padding: 0.5rem 0;
+  background-color: #fdfaf5;
 }
 
 /* navbar links */
@@ -39,14 +41,14 @@ body, html {
   text-align: center;
   text-decoration: none;
   font-size: 17px;
-  padding: 2rem 1rem; 
-  flex: 1; 
+  padding: 2rem 1rem;
+  flex: 1;
   text-align: center;
 }
 
 /* navbar active/current link */
 .navbar a.active {
-  background-color: #8A640D;
+  background-color: #8a640d;
   color: white;
 }
 
@@ -58,20 +60,19 @@ body, html {
   margin: 0 auto;
   display: block;
 }
-.nav-house-icon{
+.nav-house-icon {
   height: 65px; /* Increased from 50px */
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
-.nav-profile-icon{
+.nav-profile-icon {
   height: 65px; /* Increased from 50px */
   width: auto;
   margin: 0 auto;
   display: block;
 }
-
 
 .inventory-app {
   width: 100%;
@@ -82,7 +83,7 @@ body, html {
 
 .inventory-app h2 {
   font-size: 22px;
-  color: #5E3A0D;
+  color: #5e3a0d;
   margin-bottom: 20px;
 }
 
@@ -91,7 +92,7 @@ body, html {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
-  background: #E9EDC9;
+  background: #e9edc9;
   padding: 15px;
   border-radius: 10px;
 }
@@ -113,7 +114,7 @@ body, html {
   border: none;
   outline: none;
   padding: 12px;
-  background: #A9C37A;
+  background: #a9c37a;
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -123,7 +124,7 @@ body, html {
 #inventory-list {
   margin-top: 20px;
   border-radius: 5px;
-  background: #FFF7E8;
+  background: #fff7e8;
   padding: 10px;
   max-height: 300px;
   overflow-y: auto;
@@ -134,7 +135,7 @@ body, html {
   justify-content: space-between;
   padding: 10px 12px;
   border-bottom: 1px solid #ddd;
-  color: #5E3A0D;
+  color: #5e3a0d;
   font-size: 16px;
 }
 
@@ -143,7 +144,7 @@ body, html {
 }
 
 .expiration {
-  color: #B33A3A;
+  color: #b33a3a;
   font-weight: bold;
   font-size: 14px;
 }
