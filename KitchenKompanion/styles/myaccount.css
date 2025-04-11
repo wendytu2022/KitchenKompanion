@@ -31,7 +31,7 @@
 
 /* navbar links */
 .navbar a {
-  color: #6a491b; 
+  color: #6a491b;
   text-align: center;
   text-decoration: none;
   font-size: 17px;
@@ -46,7 +46,7 @@
 }
 
 .nav-icon {
-  height: 85px; 
+  height: 85px;
   width: auto;
   margin: 0 auto;
   display: block;
@@ -144,7 +144,7 @@
 #watcher-list {
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Hide horizontal scrolling */
-  height: 700px;
+  height: 600px;
 }
 
 #household-members-header,
