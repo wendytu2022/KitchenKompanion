@@ -111,6 +111,7 @@
   border: none;
   padding: 10px;
   margin: 10px;
+  margin-top: 20px;
   text-wrap: wrap;
   text-align: center;
   border-radius: 10px;
@@ -125,6 +126,20 @@
 #add-remove-members-link {
   text-decoration: none;
   font-size: 25px;
+  color: #6a491b;
+}
+
+#add-remove-members-button {
+  display: inline-block;
+  background-color: #dabd7f;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #6a491b;
 }
 
 #member-tab-container {
@@ -297,9 +312,9 @@
   background-color: #fefefe;
   border-radius: 10px;
   margin: auto;
-  margin-top: 300px; /* 15% from the top and centered */
-  padding: 20px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  margin-top: 200px; /* 15% from the top and centered */
+  padding: 30px;
+  width: 60%; /* Could be more or less, depending on screen size */
   font-size: 25px;
 }
 
