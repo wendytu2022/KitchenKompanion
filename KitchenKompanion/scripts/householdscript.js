@@ -1,71 +1,98 @@
 window.onload = function () {
-  // Get the modal
-  var addMemberModal = document.getElementById("add-member-modal");
+  const addMemberModal = document.getElementById("add-member-modal");
+  const addMemberBtn = document.getElementById("add-member-button");
+  const closeMemberModal = addMemberModal.querySelector(".close");
+  const memberListDiv = document.getElementById("member-list");
 
-  // Get the add-member button that opens the modal
-  var addMemberBtn = document.getElementById("add-member-button");
+  const defaultMembers = [
+    { name: "Wendy", allergies: ["Peanuts", "Shellfish"] },
+    { name: "Terence", allergies: ["Milk"] },
+    { name: "Anthony", allergies: ["Shellfish"] },
+  ];
 
-  // <---------------- ADD MEMBER MODAL FUNCTIONALITY ------------------>
-  // Member modal close button
-  var closeMemberModal = addMemberModal.querySelector(".close");
+  // show modal
+  addMemberBtn.onclick = () => (addMemberModal.style.display = "block");
 
-  // Open modals
-  addMemberBtn.onclick = function () {
-    addMemberModal.style.display = "block";
-  };
+  // close modal
+  closeMemberModal.onclick = () => (addMemberModal.style.display = "none");
 
-  // Close modals on 'x' click
-  closeMemberModal.onclick = function () {
-    addMemberModal.style.display = "none";
-  };
-
-  // Close modals if clicking outside
-  window.onclick = function (event) {
+  window.onclick = (event) => {
     if (event.target == addMemberModal) {
       addMemberModal.style.display = "none";
     }
   };
 
-  // add default members' allergies to localstorage
-  localStorage.setItem(
-    "member_allergens",
-    JSON.stringify(["Peanuts", "Shellfish", "Milk"])
-  );
+  function renderMembers(members) {
+    memberListDiv.innerHTML = "";
+    members.forEach((member, index) => {
+      const memberHTML = `
+        <div class="member" data-index="${index}">
+          <button class="delete-member">×</button>
+          <div class="profile-pic"></div>
+          <div class="user-info">
+            <h3 class="member-name">${member.name}</h3>
+            <p class="member-allergies">Allergies: ${member.allergies.join(
+              ", "
+            )}</p>
+          </div>
+        </div>`;
+      memberListDiv.innerHTML += memberHTML;
+    });
 
+    // deleting members
+    document.querySelectorAll(".delete-member").forEach((btn) => {
+      btn.onclick = function () {
+        const parent = btn.closest(".member");
+        const index = parent.getAttribute("data-index");
+        let members = JSON.parse(localStorage.getItem("members")) || [];
+
+        members.splice(index, 1);
+        localStorage.setItem("members", JSON.stringify(members));
+        renderMembers(members);
+      };
+    });
+  }
+
+  function loadMembers() {
+    const stored = localStorage.getItem("members");
+    let members = [];
+
+    if (stored) {
+      members = JSON.parse(stored);
+    } else {
+      members = defaultMembers;
+      localStorage.setItem("members", JSON.stringify(members));
+    }
+
+    renderMembers(members);
+  }
+
+  // allergy form
   document
     .getElementById("allergen-form")
     .addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form from refreshing the page
+      event.preventDefault();
 
-      var name = document.getElementById("name-text").value; //.value gets input values
-      const selectedAllergens = [];
-      const checkboxes = document.querySelectorAll(
-        'input[name="allergen"]:checked'
-      );
+      const name = document.getElementById("name-text").value.trim();
+      if (name === "") return;
 
-      checkboxes.forEach((checkbox) => {
-        selectedAllergens.push(checkbox.value);
-      });
+      const selectedAllergens = Array.from(
+        document.querySelectorAll('input[name="allergen"]:checked')
+      ).map((checkbox) => checkbox.value);
 
-      var newMember =
-        '<div class="member"><div class="profile-pic"></div><div class="user-info"><h3 class="member-name">' +
-        name +
-        '</h3><p class="member-allergies">Allergies: ' +
-        selectedAllergens.join(", ") +
-        "</p></div></div>";
+      const newMember = { name, allergies: selectedAllergens };
 
+      const members = JSON.parse(localStorage.getItem("members")) || [];
+      members.push(newMember);
+      localStorage.setItem("members", JSON.stringify(members));
+
+      renderMembers(members);
       addMemberModal.style.display = "none";
-      //Now use appendChild and add it to the list!
-      document.getElementById("member-list").innerHTML += newMember;
-
-      // get previous array of allergens
-      var currAllergens = JSON.parse(localStorage.getItem("member_allergens"));
-      var updatedAllergens = currAllergens.concat;
-      selectedAllergens;
-      localStorage.setItem(
-        "member_allergens",
-        JSON.stringify(updatedAllergens)
-      );
-      // alert("Selected allergens saved: " + selectedAllergens.join(", "));
+      document.getElementById("name-text").value = "";
+      document
+        .querySelectorAll('input[name="allergen"]')
+        .forEach((c) => (c.checked = false));
     });
+
+  loadMembers();
 };
