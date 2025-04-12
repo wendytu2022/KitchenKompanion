@@ -58,7 +58,7 @@ showTask();
 function transferCheckedItems() {
   const checkedItems = [];
   document.querySelectorAll("#list-container li.checked").forEach((li) => {
-    checkedItems.push({ name: li.textContent.replace("×", "").trim() });
+    checkedItems.push({ name: li.textContent.replace("X", "").trim() });
     li.remove(); // optional: clear from grocery list
   });
 

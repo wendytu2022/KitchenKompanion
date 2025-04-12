@@ -110,8 +110,9 @@
   color: white;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
 }
+
 
 #inventory-list {
   margin-top: 20px;
@@ -131,9 +132,11 @@
   font-size: 16px;
 }
 
-.inventory-item:last-child {
-  border-bottom: none;
+.inventory-item {
+  font-size: 18px;
+  line-height: 1.6;
 }
+
 
 .expiration {
   color: #b33a3a;
@@ -186,16 +189,35 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
-.inventory-item .to-grocery {
-  padding: 4px 10px;
-  font-size: 14px;
-  background-color: #a3c36b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  margin-top: 6px;
+
+
+.editable-quantity {
+  background-color: white;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: 18px;
   display: inline-block;
-  width: auto;
+  min-width: 40px;
+  text-align: center;
   cursor: pointer;
+  transition: box-shadow 0.2s ease;
 }
 
+.editable-quantity:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+label,
+input,
+select,
+button {
+  font-size: 18px;
+}
+
+button {
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 8px;
+}

@@ -167,3 +167,24 @@ ul li span:hover{
   overflow-y: auto;   /* Enables vertical scrolling */
   padding-right: 10px; /* Optional: prevents content from hiding behind scrollbar */
 }
+
+.search input[type="text"] {
+  width: 100%;
+  padding: 5px 5px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+
+button {
+  font-size: 18px;
+  padding: 12px 24px;
+  margin: 20px auto;
+  display: block;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+}

@@ -23,24 +23,34 @@
           </select>
           </div>
           <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for items...">
-          <input type="date" id="item-expiration">
-          <label for="location-filter">Filter by Location:</label>
-          <select id="location-filter">
-            <option value="">All</option>
+          <br>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="item-expiration">Expiration Date:</label>
+            <input type="date" id="item-expiration" />
+          </div>
+
+
           </select>
 
-          <label for="item-location">Location:</label>
-          <select id="item-location">
-            <option value="" disabled selected>Select a location</option>
-            <option value="Fridge">Fridge</option>
-            <option value="Freezer">Freezer</option>
-            <option value="Pantry">Pantry</option>
-          </select>
+          <br>
+<div style="display: flex; align-items: center; gap: 8px;">
+  <label for="item-location">Location:</label>
+  <select id="item-location">
+    <option value="" disabled selected>Select a location</option>
+    <option value="Fridge">Fridge</option>
+    <option value="Freezer">Freezer</option>
+    <option value="Pantry">Pantry</option>
+  </select>
+</div>
+
           <button type="button" id="add-location-btn">+ Add Location</button>
 
-          <button onclick="addItem()">+ Add</button>
+          <button onclick="addItem()" class="small-button">+ Add</button>
           </div>
           <ul id="inventory-list"></ul>
+          <button id="reset-app-btn">🧹 Reset App</button>
+
+
 
 
           </div>
