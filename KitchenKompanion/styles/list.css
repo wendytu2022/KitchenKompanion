@@ -1,3 +1,8 @@
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
 #screen {
   margin: auto;
   width: 640px;
@@ -12,44 +17,43 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
-  width: 100%; 
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center; 
+  align-items: center;
   padding: 0.5rem 0;
   background-color: #fdfaf5;
 }
 
 .navbar a {
-  color: #6a491b; 
+  color: #6a491b;
   text-align: center;
   text-decoration: none;
   font-size: 17px;
-  padding: 2rem 1rem; 
-  flex: 1; 
+  padding: 2rem 1rem;
+  flex: 1;
   text-align: center;
 }
 
 .navbar a.active {
-  background-color: #8A640D;
+  background-color: #8a640d;
   color: white;
 }
 
-
 .nav-icon {
-  height: 85px; 
+  height: 85px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
-.nav-house-icon{
-  height: 65px; 
+.nav-house-icon {
+  height: 65px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
-.nav-profile-icon{
+.nav-profile-icon {
   height: 65px;
   width: auto;
   margin: 0 auto;
@@ -57,17 +61,17 @@
 }
 
 h2 img {
-  width: 30px; 
-  margin-left: 10px; 
-  font-size : 16px;
+  width: 30px;
+  margin-left: 10px;
+  font-size: 16px;
 }
 
-.container{
-  width: 100%; 
+.container {
+  width: 100%;
   min-height: 100%;
 }
 
-.todo-app{
+.todo-app {
   width: 100%;
   max-width: 540px;
   background: #fff;
@@ -76,12 +80,12 @@ h2 img {
   border-radius: 10px;
 }
 
-.todo-app h2{
+.todo-app h2 {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
-.row{
+.row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,7 +95,7 @@ h2 img {
   margin-bottom: 25px;
 }
 .search-section input {
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   background: #edeef0;
@@ -99,24 +103,24 @@ h2 img {
   padding-left: 20px;
   margin-bottom: 25px;
 }
-input{
-  flex:1;
+input {
+  flex: 1;
   border: none;
   outline: none;
   background: transparent;
   padding: 10px;
 }
-button{
+button {
   border: none;
   outline: none;
   padding: 16px 50px;
-  background:#A9C37A;
+  background: #a9c37a;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
 }
-ul li{
+ul li {
   list-style: none;
   font-size: 17px;
   padding: 12px 8px 12px 50px;
@@ -125,8 +129,8 @@ ul li{
   position: relative;
 }
 
-ul li::before{
-  content: '';
+ul li::before {
+  content: "";
   position: absolute;
   height: 24px;
   width: 24px;
@@ -136,16 +140,16 @@ ul li::before{
   top: 12px;
   left: 8px;
 }
-ul li.checked{
+ul li.checked {
   text-decoration: line-through;
   color: #555;
 }
 
-ul li.checked::before{
+ul li.checked::before {
   background-image: url(../images/Check.png);
 }
 
-ul li span{
+ul li span {
   position: absolute;
   right: 0;
   top: 5px;
@@ -157,15 +161,15 @@ ul li span{
   text-align: center;
 }
 
-ul li span:hover{
+ul li span:hover {
   background: #edeeef;
   border-radius: 50%;
 }
 
 #list-container {
-  max-height: 300px; 
-  overflow-y: auto;   
-  padding-right: 10px; 
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 .search input[type="text"] {
@@ -175,7 +179,7 @@ ul li span:hover{
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
 }
 

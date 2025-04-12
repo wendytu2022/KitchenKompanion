@@ -1,3 +1,7 @@
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
 
 #screen {
   margin: auto;
@@ -29,7 +33,7 @@
 
 /* navbar links */
 .navbar a {
-  color: #6a491b; 
+  color: #6a491b;
   text-align: center;
   text-decoration: none;
   font-size: 17px;
@@ -38,29 +42,26 @@
   text-align: center;
 }
 
-
 .navbar a.active {
   background-color: #8a640d;
   color: white;
 }
 
-
-
 .nav-icon {
-  height: 85px; 
+  height: 85px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
 .nav-house-icon {
-  height: 65px; 
+  height: 65px;
   width: auto;
   margin: 0 auto;
   display: block;
 }
 
 .nav-profile-icon {
-  height: 65px; 
+  height: 65px;
   width: auto;
   margin: 0 auto;
   display: block;
@@ -113,7 +114,6 @@
   border-radius: 5px;
 }
 
-
 #inventory-list {
   margin-top: 20px;
   border-radius: 5px;
@@ -137,13 +137,11 @@
   line-height: 1.6;
 }
 
-
 .expiration {
   color: #b33a3a;
   font-weight: bold;
   font-size: 14px;
 }
-
 
 /* Dropdown Button */
 .dropbtn {
@@ -154,24 +152,20 @@
   cursor: pointer;
 }
 
-
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-
 
 .dropdown-content a {
   color: black;
@@ -180,8 +174,9 @@
   display: block;
 }
 
-.show {display:block;}
-
+.show {
+  display: block;
+}
 
 .editable-quantity {
   background-color: white;
@@ -196,7 +191,6 @@
   cursor: pointer;
   transition: box-shadow 0.2s ease;
 }
-
 
 label,
 input,

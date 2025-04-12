@@ -334,6 +334,17 @@ input.larger {
   font-size: 25px;
 }
 
+.allergy-modal-content {
+  background-color: #fefefe;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 200px;
+  padding: 25px;
+  padding-top: 10px;
+  width: 60%;
+  font-size: 25px;
+}
+
 .watchers-modal-content {
   background-color: #fefefe;
   border-radius: 10px;
