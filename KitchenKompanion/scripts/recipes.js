@@ -228,11 +228,7 @@ function addMissingIngredientsToList(ingredients) {
   // get missing ingredients
   const missingIngredients = ingredients.filter(ingredient => 
     !inventoryItemNames.includes(ingredient.name.toLowerCase()));
-  
-  if (missingIngredients.length === 0) {
-    alert("You have all ingredients needed for this recipe!");
-    return;
-  }
+
   
   // Add missing ingredients to grocery list if not already there
   let addedCount = 0;
@@ -252,11 +248,6 @@ function addMissingIngredientsToList(ingredients) {
   // Save updated grocery list back to localStorage
   localStorage.setItem("data", tempDiv.innerHTML);
   
-  if (addedCount > 0) {
-    alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
-  } else {
-    alert("These ingredients are already on your grocery list!");
-  }
 }
 
 addIngredientButton.addEventListener('click', function () {
@@ -461,10 +452,6 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
             const missingIngredients = recipeIngredients.filter(ingredient => 
               !inventoryItemNames.includes(ingredient.name.toLowerCase()));
             
-            if (missingIngredients.length === 0) {
-              alert("You have all ingredients needed for this recipe!");
-              return;
-            }
             
             // Add missing ingredients to grocery list if they're not already there
             let addedCount = 0;
@@ -483,12 +470,6 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
             
             // Save updated grocery list back to localStorage
             localStorage.setItem("data", tempDiv.innerHTML);
-            
-            if (addedCount > 0) {
-              alert(`${addedCount} missing ingredient${addedCount === 1 ? '' : 's'} added to your grocery list!`);
-            } else {
-              alert("These ingredients are already on your grocery list!");
-            }
           });
           modalContentDiv.appendChild(addToListBtn);
           
