@@ -9,7 +9,6 @@ const searchInput = document.querySelector('.search-bar input[type="search"]');
 const ingredientsContainer = document.getElementById('ingredientsContainer');
 const addIngredientButton = document.getElementById('addIngredient');
 
-// Redid recipe complilation to use local storage 
 function saveRecipesToStorage() {
   const recipes = [];
   document.querySelectorAll('#recipeList article').forEach(article => {
@@ -58,7 +57,6 @@ function loadRecipesFromStorage() {
   }
 }
 
-// Modify the createRecipeElement function to add a Remove button
 
 function createRecipeElement(name, description, fullDescription, tags, ingredients) {
   const newArticle = document.createElement('article');
@@ -130,7 +128,7 @@ function createRecipeElement(name, description, fullDescription, tags, ingredien
   return newArticle;
 }
 
-// Helper function to show recipe modal (used by both See More buttons)
+// Helper function to show recipe modal
 function showRecipeModal(name, description, fullDescription, tags, ingredients) {
   const modal = document.getElementById('recipeModal');
   const modalContentDiv = document.getElementById('modalRecipeDetails');
@@ -168,6 +166,27 @@ function showRecipeModal(name, description, fullDescription, tags, ingredients) 
       ingredientsList.appendChild(listItem);
     });
     modalContentDiv.appendChild(ingredientsList);
+    
+    // allergy warnings
+    const allergens = getAllergyWarnings(ingredients);
+    if (allergens.length > 0) {
+      const allergensHeading = document.createElement('h4');
+      allergensHeading.textContent = 'Allergy Warning';
+      allergensHeading.style.color = '#E34C35'; 
+      modalContentDiv.appendChild(allergensHeading);
+      
+      const allergensList = document.createElement('ul');
+      allergensList.className = 'allergens-list';
+      allergensList.style.color = '#E34C35';
+      
+      allergens.forEach(allergen => {
+        const listItem = document.createElement('li');
+        listItem.textContent = allergen;
+        allergensList.appendChild(listItem);
+      });
+      
+      modalContentDiv.appendChild(allergensList);
+    }
   }
   
   if (tags) {
@@ -390,6 +409,25 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
               ingredientsList.appendChild(listItem);
             });
             modalContentDiv.appendChild(ingredientsList);
+            
+            // Add allergy warnings
+            const allergens = getAllergyWarnings(recipeIngredients);
+            if (allergens.length > 0) {
+              const allergensHeading = document.createElement('h4');
+              allergensHeading.textContent = 'Allergy Warning';
+              modalContentDiv.appendChild(allergensHeading);
+              
+              const allergensList = document.createElement('ul');
+              allergensList.className = 'allergens-list';
+                            
+              allergens.forEach(allergen => {
+                const listItem = document.createElement('li');
+                listItem.textContent = allergen;
+                allergensList.appendChild(listItem);
+              });
+              
+              modalContentDiv.appendChild(allergensList);
+            }
           }
           
           if (updatedTags) {
@@ -419,7 +457,7 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
             
             const inventoryItemNames = inventoryItems.map(item => item.name.toLowerCase());
             
-            // Find missing ingredients
+            // get missing ingredients
             const missingIngredients = recipeIngredients.filter(ingredient => 
               !inventoryItemNames.includes(ingredient.name.toLowerCase()));
             
@@ -460,8 +498,9 @@ function createEditButton(article, recipeHeading, recipeDesc, recipeTags, recipe
 
       recipeForm.reset();
       hideForm();
-
+      
       recipeForm.onsubmit = defaultFormSubmit;
+      saveRecipesToStorage();
     };
   });
 
@@ -527,3 +566,39 @@ window.addEventListener('click', function(event) {
 });
 
 window.addEventListener('load', loadRecipesFromStorage);
+
+// Helper function to check for allergens in household members
+function getAllergyWarnings(ingredients) {
+  // Get the household allergens from localStorage
+  let memberAllergens = [];
+  try {
+    memberAllergens = JSON.parse(localStorage.getItem("member_allergens")) || [];
+  } catch (e) {
+    console.error("Error loading allergens:", e);
+    return [];
+  }
+  
+  if (!memberAllergens || !memberAllergens.length) {
+    return [];
+  }
+  
+  // get ingredient names
+  const ingredientNames = ingredients.map(ing => ing.name.toLowerCase());
+  
+  const warnings = [];
+  
+  // Check if any ingredients contain allergen names
+  memberAllergens.forEach(allergen => {
+    const allergenLower = allergen.toLowerCase();
+    
+    for (const ingredient of ingredientNames) {
+      // Check if the ingredient contains the allergen name or vice versa
+      if (ingredient.includes(allergenLower) || allergenLower.includes(ingredient)) {
+        warnings.push(`This recipe contains ${allergen} which may cause allergic reactions for household members.`);
+        break;
+      }
+    }
+  });
+  
+  return warnings;
+}
