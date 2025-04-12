@@ -2,6 +2,7 @@
 const inventoryList = document.getElementById("inventory-list");
 const itemNameInput = document.getElementById("item-name");
 const quantityInput = document.getElementById("item-quantity");
+
 const locationInput = document.getElementById("item-location");
 const expirationInput = document.getElementById("item-expiration");
 const addButton = document.querySelector(".row button");
@@ -9,33 +10,36 @@ const unitSelect = document.getElementById("item-unit");
 const locationFilter = document.getElementById("location-filter");
 
 // Wizard Mode (Transferred Items from Grocery List)
-let transferredItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
+// <--- for this project I also used alot of past knlodge from 335 --->
+ let transferredItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
 let currentIndex = 0;
 
 if (transferredItems.length > 0) {
   startWizard();
 }
+// I used Simple Task Management App with HTML CSS and JS 
+// Learn Web Dev with Norbert video for basic concepts and refined them and edited it to fit my needs
+//https://www.youtube.com/watch?v=txSwC82v6UM
 
 function startWizard() {
   if (currentIndex >= transferredItems.length) {
-    endWizard();
+       endWizard();
     return;
   }
 
   const item = transferredItems[currentIndex];
   itemNameInput.value = item.name;
-  quantityInput.value = "";
+   quantityInput.value = "";
   locationInput.value = "";
   expirationInput.value = "";
-  addButton.textContent = "Next";
 }
 
 function endWizard() {
-  transferredItems = [];
+    transferredItems = [];
   currentIndex = 0;
   localStorage.removeItem("inventoryItems");
   clearInputs();
-  addButton.textContent = "+ Add";
+  addButton.textContent = "+ Add Location";
 }
 
 
@@ -44,14 +48,19 @@ function addItem() {
   const name = itemNameInput.value.trim();
   const quantity = `${quantityInput.value.trim()} ${unitSelect.value}`;
   const location = locationInput.value;
-  const expiration = expirationInput.value;
+    const expiration = expirationInput.value;
 
-  if (!name || !quantity || location === "" || !expiration) {
-    alert("Please fill in all fields.");
-    return;
+  if (!name || !quantity || location === "" ||  !expiration) {
+      alert("Please fill in all fields.");
+     return;
   }
 
+
+
+
   const li = document.createElement("li");
+
+  /*<--- for this section i used help from stackOverflow to get a jist on how to add multiple span section */
   li.className = "inventory-item";
   li.innerHTML = `
     ${name} <span class="item-quantity editable-quantity">${quantity}</span>
@@ -63,9 +72,13 @@ function addItem() {
   inventoryList.appendChild(li);
 
   if (currentIndex < transferredItems.length) {
+
     currentIndex++;
+
     startWizard();
+
   } else {
+
     clearInputs();
   }
 
@@ -77,7 +90,9 @@ function addItem() {
 //Save and load inventory
 
 function saveInventory() {
+
   const items = [];
+
   const listItems = document.querySelectorAll(
     "#inventory-list .inventory-item"
   );
@@ -86,11 +101,14 @@ function saveInventory() {
     const name = li.childNodes[0].textContent.trim();
     const quantity =
       li.querySelector(".item-quantity")?.textContent.trim() || "";
+
     const location = li.childNodes[2]?.textContent.trim() || "";
+
     const expiration = li.querySelector(".expiration").textContent;
 
     items.push({
       text: `${name} - ${quantity} units - ${location}`,
+
       expiration,
     });
   });
@@ -98,6 +116,7 @@ function saveInventory() {
   localStorage.setItem("savedInventory", JSON.stringify(items));
 }
 
+// for this section i used W3 schoold local storage page to help understand more on how exactlly local storage works 
 function loadInventory() {
   const saved = JSON.parse(localStorage.getItem("savedInventory")) || [];
 
@@ -106,7 +125,9 @@ function loadInventory() {
     li.className = "inventory-item";
 
     const parts = item.text.split(" - ");
+
     const name = parts[0];
+
     const quantity = parts[1].replace(" units", "");
     const location = parts[2];
 
@@ -164,7 +185,8 @@ function myFunction() {
 
 
 //Locations add,load,save
-
+//<----- In this section I used help from stack over flow specificlly 
+//https://stackoverflow.com/questions/63539551/how-do-i-add-an-on-click-event-listener-using-an-argument-passed-to-a-function-i ---->
 document.getElementById("add-location-btn").addEventListener("click", () => {
   const newLocation = prompt("Enter new storage location:");
   if (newLocation) {
@@ -172,24 +194,27 @@ document.getElementById("add-location-btn").addEventListener("click", () => {
       (opt) => opt.value.toLowerCase() === newLocation.toLowerCase()
     );
 
-    // Only add new location if it doesn't already exist
+   
     if (!exists) {
       const option = document.createElement("option");
+
       option.value = newLocation;
       option.textContent = newLocation;
+
       locationInput.appendChild(option);
 
       // Update the filter dropdown too
       const filterOption = document.createElement("option");
       filterOption.value = newLocation;
-      filterOption.textContent = newLocation;
+
+        filterOption.textContent = newLocation;
       locationFilter.appendChild(filterOption);
 
-      // Save the new location to localStorage
       saveLocation(newLocation);
     }
 
-    // Set the new location as selected in the location input
+    // Set the new location as selected in the location input to make it clear for user 
+
     locationInput.value = newLocation;
   }
 });
@@ -198,9 +223,11 @@ document.getElementById("add-location-btn").addEventListener("click", () => {
 function saveLocation(newLocation) {
   const saved = JSON.parse(localStorage.getItem("customLocations")) || [];
 
-  // Avoid duplicates in localStorage
-  if (!saved.includes(newLocation)) {
+  // Avoid duplicates in localStorage bc that is no good
+  if (!saved.includes(newLocation))   {
+
     saved.push(newLocation);
+
     localStorage.setItem("customLocations", JSON.stringify(saved));
   }
 }
@@ -274,61 +301,6 @@ inventoryList.addEventListener("click", function (e) {
 });
 
 
-function renderItems() {
-  const itemList = document.getElementById("item-list");
-  itemList.innerHTML = "";
-
-  const items = loadItems(); // get all items
-  const selectedLocation = locationFilter.value;
-
-  // Sort items: selected location items go first
-  items.sort((a, b) => {
-    if (selectedLocation === "") return 0; // No sorting if "All Locations"
-    if (a.location === selectedLocation && b.location !== selectedLocation)
-      return -1;
-    if (a.location !== selectedLocation && b.location === selectedLocation)
-      return 1;
-    return 0;
-  });
-
-  //render inventory
-  function renderInventory() {
-  const inventoryList = document.getElementById("inventory-list");
-  inventoryList.innerHTML = ""; // clear old items
-  const inventoryItems = JSON.parse(localStorage.getItem("inventoryItems")) || [];
-
-  inventoryItems.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = `${item.name} - ${item.quantity} ${item.unit}`;
-
-    // ADD THIS BUTTON
-    const addButton = document.createElement("button");
-    addButton.textContent = "+";
-    addButton.className = "small-transfer-button";
-    addButton.style.marginLeft = "10px";
-    addButton.onclick = () => {
-      const groceryItems = JSON.parse(localStorage.getItem("groceryItems")) || [];
-      groceryItems.push({ name: item.name });
-      localStorage.setItem("groceryItems", JSON.stringify(groceryItems));
-    };
-
-    li.appendChild(addButton);
-    inventoryList.appendChild(li);
-  });
-}
-
-
-  // Filter and render
-  items.forEach((item, index) => {
-    const matchesFilter =
-      !selectedLocation || item.location === selectedLocation;
-    if (matchesFilter || selectedLocation === "") {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} - ${item.location} - ${item.expiration}`;
-      itemList.appendChild(li);
-    }
-  });
-}
 
 
 // Close dropdowns when clicking outside
@@ -342,40 +314,6 @@ window.onclick = function(event) {
     });
   }
 };
-
-//load locations logic
-
-function loadLocations() {
-  const savedLocations =
-    JSON.parse(localStorage.getItem("customLocations")) || [];
-  const locations = ["Fridge", "Freezer", "Pantry", ...savedLocations];
-
-  // Clear existing options
-  locationFilter.innerHTML = '<option value="">All Locations</option>';
-
-  locations.forEach((loc) => {
-    const option = document.createElement("option");
-    option.value = loc;
-    option.textContent = loc;
-    locationFilter.appendChild(option);
-  });
-}
-
-//filter for location 
-function filterInventoryByLocation() {
-  const selectedLocation = locationFilter.value.toLowerCase(); // Get the selected location
-  const items = document.querySelectorAll("#inventory-list .inventory-item"); // All items in the list
-
-  items.forEach((item) => {
-    const itemLocation = item
-      .querySelector(".item-location")
-      .textContent.toLowerCase();
-    item.style.display =
-      selectedLocation === "" || itemLocation.includes(selectedLocation)
-        ? ""
-        : "none";
-  });
-}
 
 //rest logic 
 
@@ -395,5 +333,4 @@ document.getElementById("reset-app-btn").addEventListener("click", () => {
 
 loadInventory();
 loadLocations();
-loadLocations();
-renderItems();
+

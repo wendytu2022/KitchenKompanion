@@ -1,6 +1,8 @@
+// <--- for this project I also used alot of past knlodge from 335 --->
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
-
+/* I used stack over flow to get an idea of how to do list were done and how i could make mine 
+ https://stackoverflow.com/questions/77173437/doing-a-todolist-in-js-receiving-a-not-expected-output-when-inserting-an-elemen */ 
 function addTask() {
   if (inputBox.value === "") {
     alert("Please enter a task");
@@ -58,15 +60,20 @@ showTask();
 function transferCheckedItems() {
   const checkedItems = [];
   document.querySelectorAll("#list-container li.checked").forEach((li) => {
-    checkedItems.push({ name: li.textContent.replace("X", "").trim() });
-    li.remove(); // optional: clear from grocery list
+    // Extract the name without the "x" (assuming it's in a <span> element)
+    const itemName = li.childNodes[0].textContent.trim(); // Get the text of the item (ignores the "x")
+    checkedItems.push({ name: itemName });
+
+    li.remove(); // Remove the item from the list
   });
 
+  // Save the cleaned-up items to localStorage
   localStorage.setItem("inventoryItems", JSON.stringify(checkedItems));
-  saveData(); // update your grocery list storage
-  window.location.href = "inventorylist.html"; // redirect to inventory
-}
+  saveData();
 
+  // Show the modal instead of redirecting
+  document.getElementById("transfer-modal").style.display = "block";
+}
 
 /* <----- Based off of w3schools How TO - Filter/Search List: https://www.w3schools.com/howto/howto_js_filter_lists.asp */
 

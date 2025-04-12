@@ -163,9 +163,9 @@ ul li span:hover{
 }
 
 #list-container {
-  max-height: 300px;  /* You can adjust this height */
-  overflow-y: auto;   /* Enables vertical scrolling */
-  padding-right: 10px; /* Optional: prevents content from hiding behind scrollbar */
+  max-height: 300px; 
+  overflow-y: auto;   
+  padding-right: 10px; 
 }
 
 .search input[type="text"] {
