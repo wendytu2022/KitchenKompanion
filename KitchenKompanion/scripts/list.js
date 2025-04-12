@@ -34,14 +34,31 @@ function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
 }
 function showTask() {
+  // Load from UI-stored tasks
   listContainer.innerHTML = localStorage.getItem("data");
+
+  // Also load items added via inventory
+  const storedGroceryItems =
+    JSON.parse(localStorage.getItem("groceryList")) || [];
+  storedGroceryItems.forEach((item) => {
+    const li = document.createElement("li");
+    li.innerHTML = item.name;
+    listContainer.appendChild(li);
+    const span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
+  });
+
+  // Clear groceryList after showing to prevent duplicates on next load
+  localStorage.removeItem("groceryList");
 }
+
 showTask();
 
 function transferCheckedItems() {
   const checkedItems = [];
   document.querySelectorAll("#list-container li.checked").forEach((li) => {
-    checkedItems.push({ name: li.textContent.replace("×", "").trim() });
+    checkedItems.push({ name: li.textContent.replace("X", "").trim() });
     li.remove(); // optional: clear from grocery list
   });
 
