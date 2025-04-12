@@ -14,41 +14,86 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <p>Enter new member's name and allergies.</p>
-          <p>Name:</p>
-          <input type="text" id="name-text" placeholder="Jane Doe" />
+          <div class="name-row">
+            <label for="name-text">Name:</label>
+            <input type="text" id="name-text" placeholder="Jane Doe" />
+          </div>
           <p>Allergies:</p>
           <form id="allergen-form">
-            <label
-              ><input type="checkbox" name="allergen" value="Peanuts" />
-              Peanuts</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Milk" />
-              Milk</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Eggs" />
-              Eggs</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Shellfish" />
-              Shellfish</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Wheat" />
-              Wheat</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Soy" /> Soy</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Tree nuts" /> Tree
-              nuts</label
-            ><br />
-            <label
-              ><input type="checkbox" name="allergen" value="Fish" />
-              Fish</label
-            ><br />
+            <div class="allergen-grid">
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Peanuts"
+                />
+                Peanuts</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Milk"
+                />
+                Milk</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Eggs"
+                />
+                Eggs</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Shellfish"
+                />
+                Shellfish</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Wheat"
+                />
+                Wheat</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Soy"
+                />
+                Soy</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Tree nuts"
+                />
+                Tree nuts</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="allergen"
+                  class="larger"
+                  value="Fish"
+                />
+                Fish</label
+              >
+            </div>
             <br />
             <button type="submit" id="add-member">Add Member</button>
           </form>
@@ -56,7 +101,6 @@
 
         <img src="images/phonekeyboard.jpg" id="phone-keyboard" />
       </div>
-      <h2>Household</h2>
       <div id="member-tab-container">
         <img src="images/tabbackground.png" id="member-tab" />
         <a href="household.html" id="household-members-header">Members</a>

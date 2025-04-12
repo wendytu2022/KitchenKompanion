@@ -1,42 +1,92 @@
-// Get the modal
-var addMemberModal = document.getElementById("add-watcher-modal");
+window.onload = function () {
+  const addWatcherModal = document.getElementById("add-watcher-modal");
+  const addWatcherBtn = document.getElementById("add-watcher-button");
+  const closeModalBtn = addWatcherModal.querySelector(".close");
+  const watcherListDiv = document.getElementById("watcher-list");
 
-// Get the add-member button that opens the modal
-var addMemberBtn = document.getElementById("add-watcher-button");
+  const defaultWatchers = [
+    { name: "Natalie", relationship: "Anthony's Older Sister" },
+  ];
 
-// <---------------- ADD WATCHER MODAL FUNCTIONALITY ------------------>
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  // open modal
+  addWatcherBtn.onclick = () => {
+    addWatcherModal.style.display = "block";
+  };
 
-// When the user clicks on the button, open the modal
-addMemberBtn.onclick = function () {
-  addMemberModal.style.display = "block";
-};
+  // close modal on x
+  closeModalBtn.onclick = () => {
+    addWatcherModal.style.display = "none";
+  };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {};
+  // close modal when tap background
+  window.onclick = function (event) {
+    if (event.target == addWatcherModal) {
+      addWatcherModal.style.display = "none";
+    }
+  };
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == addMemberModal) {
-    addMemberModal.style.display = "none";
+  function renderWatchers(watchers) {
+    watcherListDiv.innerHTML = "";
+    watchers.forEach((watcher, index) => {
+      const watcherHTML = `
+        <div class="watcher" data-index="${index}">
+          <button class="delete-watcher">×</button>
+          <div class="profile-pic"></div>
+          <div class="user-info">
+            <h3 class="member-name">${watcher.name}</h3>
+            <p class="member-allergies">${watcher.relationship}</p>
+          </div>
+        </div>`;
+      watcherListDiv.innerHTML += watcherHTML;
+    });
+
+    // deleting watchers
+    document.querySelectorAll(".delete-watcher").forEach((btn) => {
+      btn.onclick = function () {
+        const parent = btn.closest(".watcher");
+        const index = parent.getAttribute("data-index");
+        let watchers = JSON.parse(localStorage.getItem("watchers")) || [];
+
+        watchers.splice(index, 1); // remove watcher
+        localStorage.setItem("watchers", JSON.stringify(watchers)); // save updated list
+        renderWatchers(watchers); // re-render
+      };
+    });
   }
-};
 
-//Defining a listener for our button, specifically, an onclick handler
-document.getElementById("add-watcher").onclick = function () {
-  //First things first, we need our text:
-  var name = document.getElementById("name-text").value; //.value gets input values
-  var relationship = document.getElementById("relationship-text").value;
+  function loadWatchers() {
+    const stored = localStorage.getItem("watchers");
+    let watchers = [];
 
-  var newMember =
-    '<div class="watcher"><div class="profile-pic"></div><div class="user-info"><h3 class="member-name">' +
-    name +
-    '</h3><p class="member-allergies">' +
-    relationship +
-    "</p></div></div>";
+    if (stored) {
+      watchers = JSON.parse(stored);
+    } else {
+      watchers = defaultWatchers;
+      localStorage.setItem("watchers", JSON.stringify(watchers));
+    }
 
-  addMemberModal.style.display = "none";
-  //Now use appendChild and add it to the list!
-  document.getElementById("watcher-list").innerHTML += newMember;
+    renderWatchers(watchers);
+  }
+
+  document.getElementById("add-watcher").onclick = function () {
+    const name = document.getElementById("watcher-name-text").value.trim();
+    const relationship = document
+      .getElementById("relationship-text")
+      .value.trim();
+
+    if (name === "" || relationship === "") return;
+
+    const newWatcher = { name, relationship };
+    const watchers = JSON.parse(localStorage.getItem("watchers")) || [];
+    watchers.push(newWatcher);
+    localStorage.setItem("watchers", JSON.stringify(watchers));
+
+    renderWatchers(watchers);
+    addWatcherModal.style.display = "none";
+
+    document.getElementById("watcher-name-text").value = "";
+    document.getElementById("relationship-text").value = "";
+  };
+
+  loadWatchers();
 };
