@@ -111,11 +111,17 @@
   border: none;
   padding: 10px;
   margin: 10px;
+  margin-top: 20px;
   text-wrap: wrap;
   text-align: center;
   border-radius: 10px;
   font-size: 25px;
   color: #6a491b;
+}
+
+input.larger {
+  width: 40px;
+  height: 40px;
 }
 
 #household-header {
@@ -125,6 +131,20 @@
 #add-remove-members-link {
   text-decoration: none;
   font-size: 25px;
+  color: #6a491b;
+}
+
+#add-remove-members-button {
+  display: inline-block;
+  background-color: #dabd7f;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #6a491b;
 }
 
 #member-tab-container {
@@ -142,8 +162,8 @@
 
 #member-list,
 #watcher-list {
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Hide horizontal scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 600px;
 }
 
@@ -182,7 +202,7 @@
 
 #watchers-watchers-header {
   position: absolute;
-  color: #7c8830;
+  color: #cd6f13;
   z-index: 2;
   margin-right: 70px;
   right: 20px;
@@ -217,6 +237,20 @@
   text-wrap: wrap;
   color: #e3eee1;
   border-radius: 10px;
+  position: relative;
+  padding-right: 30px;
+}
+
+.delete-member,
+.delete-watcher {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #fefae0;
+  cursor: pointer;
 }
 
 .member {
@@ -276,36 +310,62 @@
   font-size: 25px;
 }
 
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   margin: auto;
-  position: absolute; /* Stay in place */
-  z-index: 3; /* Sit on top */
+  position: absolute;
+  z-index: 3;
   left: 0;
   top: 0;
-  width: 640px; /* Full width */
-  height: 960px; /* Full height */
-
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 640px;
+  height: 960px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
   border-radius: 10px;
   margin: auto;
-  margin-top: 300px; /* 15% from the top and centered */
-  padding: 20px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  margin-top: 5px;
+  padding: 25px;
+  padding-top: 10px;
+  width: 60%;
   font-size: 25px;
 }
 
-#allergy-text {
-  height: 40px;
-  width: 300px;
+.watchers-modal-content {
+  background-color: #fefefe;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 39px;
+  padding: 25px;
+  width: 60%;
+  font-size: 25px;
+}
+
+#name-text {
+  height: 30px;
+  width: 250px;
+  border: 5px solid #7c8830;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 25px;
+}
+
+#watcher-name-text {
+  height: 30px;
+  width: 250px;
+  border: 5px solid #cd6f13;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 25px;
+}
+
+#relationship-text {
+  height: 30px;
+  width: 200px;
   border: 5px solid #cd6f13;
   border-radius: 10px;
   padding-left: 10px;
@@ -321,7 +381,40 @@
   font-size: 25px;
 }
 
-/* The Close Button */
+#add-member {
+  height: 50px;
+  width: 200px;
+  border-color: #7c8830;
+  border-radius: 10px;
+  background-color: #7c8830;
+  color: #fdfaf5;
+  font-size: 25px;
+}
+
+#add-watcher {
+  height: 50px;
+  width: 190px;
+  border-color: #cd6f13;
+  border-radius: 10px;
+  background-color: #cd6f13;
+  font-size: 25px;
+  color: #fdfaf5;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.allergen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin-top: 10px;
+}
+
 .close {
   color: #aaa;
   float: right;
@@ -338,5 +431,5 @@
 
 #phone-keyboard {
   width: 640px;
-  margin-top: 173.5px;
+  margin-top: 10px;
 }

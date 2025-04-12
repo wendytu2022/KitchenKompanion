@@ -34,4 +34,34 @@ window.onload = function () {
     //Now use appendChild and add it to the list!
     document.getElementById("allergy").innerHTML += ", " + newAllergy;
   };
+
+  document
+    .getElementById("allergen-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form from refreshing the page
+
+      const selectedAllergens = [];
+      const checkboxes = document.querySelectorAll(
+        'input[name="allergen"]:checked'
+      );
+
+      checkboxes.forEach((checkbox) => {
+        selectedAllergens.push(checkbox.value);
+      });
+
+      addAllergyModal.style.display = "none";
+      //Now use appendChild and add it to the list!
+      document.getElementById("allergy").innerHTML +=
+        ", " + selectedAllergens.join(", ");
+
+      // get previous array of allergens
+      var currAllergens = JSON.parse(localStorage.getItem("member_allergens"));
+      var updatedAllergens = currAllergens.concat;
+      selectedAllergens;
+      localStorage.setItem(
+        "member_allergens",
+        JSON.stringify(updatedAllergens)
+      );
+      // alert("Selected allergens saved: " + selectedAllergens.join(", "));
+    });
 };
